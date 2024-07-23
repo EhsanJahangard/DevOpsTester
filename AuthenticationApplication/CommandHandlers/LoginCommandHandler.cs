@@ -1,0 +1,97 @@
+﻿using AuthenticationApplication.Commands.Login;
+using AuthenticationApplication.Dtos.Login;
+using AuthenticationApplication.TokenManagers;
+using AuthenticationDomain;
+using AuthenticationRepository.Repositories.Interfaces;
+using InfrastructureService;
+using MediatR;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using RabbitMQService;
+
+namespace AuthenticationApplication.CommandHandlers
+{
+    public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, ResponseMessage>,
+        IRequestHandler<CheckVerificationCodeCommand, ResponseMessage>
+    {
+        private readonly UserManager<User> _userManager;
+        private readonly RoleManager<Role> _roleManager;
+        private readonly ITokenManager _tokenManager;
+        private readonly IVerificationCodeRepository _verificationCodeRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+        public LoginCommandHandler(UserManager<User> userManager, RoleManager<Role> roleManager, ITokenManager tokenManager, IVerificationCodeRepository verificationCodeRepository, IUnitOfWork unitOfWork)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _tokenManager = tokenManager;
+            _verificationCodeRepository = verificationCodeRepository;
+            _unitOfWork = unitOfWork;
+        }
+
+        public async  Task<ResponseMessage> Handle(SendVerificationCodeCommand request, CancellationToken cancellationToken)
+        {
+            try
+            {
+                User user = await _userManager.FindByNameAsync(request.Username);
+
+                bool checkPassword = await _userManager.CheckPasswordAsync(user,request.Password);
+
+                if (checkPassword != true)
+                    return new ResponseMessage("نام کاربری یا رمز عبور صحیح نمی باشد");
+
+                Random random = new Random();
+
+                string code = random.Next(111111,999999).ToString();
+
+                VerificationCode verificationCode = await _verificationCodeRepository.GetByUsernameAsync(request.Username);
+
+                if (verificationCode is null)
+                    await _verificationCodeRepository.AddAsync(new VerificationCode(request.Username, code, DateTime.Now.AddMinutes(3)));
+                else
+                    verificationCode.Update(code, DateTime.Now.AddMinutes(3));
+
+                await _unitOfWork.SaveChangesAsync();
+
+                Sms sms = new Sms() { MobileNumber = "09356735245", Message = $"کد تایید اوستا {code}" };
+
+                MessageBrokerHelper.Publish(JsonConvert.SerializeObject(sms), "sms");
+
+                return new ResponseMessage("کد تایید ارسال شد");
+            }
+            catch (Exception ex) 
+            {
+                return new ResponseMessage(ex.Message);
+            }
+
+        }
+
+        public async Task<ResponseMessage> Handle(CheckVerificationCodeCommand request, CancellationToken cancellationToken)
+        {
+            VerificationCode verificationCode = await _verificationCodeRepository.GetByUsernameAsync(request.Username);
+
+            if(verificationCode != null && request.VerificationCode == verificationCode.Code && verificationCode.ExpireTime > DateTime.Now)
+            {
+                User user = await _userManager.FindByNameAsync(request.Username);
+
+                IList<string> roles = await _userManager.GetRolesAsync(user);
+
+                IList<string> permissions = await _roleManager.Roles.Where(x => roles.Contains(x.Name)).Include(x => x.Permissions).SelectMany(x => x.Permissions).Select(x => x.Name).ToListAsync();
+
+                LoginDto dto = new LoginDto()
+                {
+                    IsAuthenticated = true,
+                    AccessToken = _tokenManager.GenerateToken(user.Id, user.UserName, roles, permissions),
+                    RefreshToken = await _tokenManager.GenerateRefreshTokenAsync(user.Id),
+                    Roles = roles,
+                    Permissions = permissions
+                };
+
+                return new ResponseMessage(dto);
+            }
+            else
+                return new ResponseMessage("کد وارد شده صحیح نمی باشد");
+        }
+    }
+}
