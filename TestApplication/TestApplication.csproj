@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DevOpsTester\TestDomain\TestDomain.csproj" />
+    <ProjectReference Include="..\TestDomain\TestDomain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CQRS\Level\Commands\" />
+    <Folder Include="CQRS\Level\ComamndHandlers\" />
+    <Folder Include="CQRS\Level\QueryHandlers\" />
+    <Folder Include="CQRS\Level\Queries\" />
+    <Folder Include="Convertors\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>

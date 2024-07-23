@@ -4,10 +4,6 @@
     {
         None,
         Authentication,
-        ProjectShip,
-        Payaneh,
-        PTS,
-        Financial,
-        Mobile
+        TestService
     }
 }

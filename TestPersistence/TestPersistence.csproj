@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TestApplication\TestApplication.csproj" />
+    <Folder Include="Impelementations\Repositories\Write\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Impelementations\Repositories\" />
+    <ProjectReference Include="..\TestApplication\TestApplication.csproj" />
   </ItemGroup>
 
 </Project>
