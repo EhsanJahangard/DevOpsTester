@@ -19,15 +19,12 @@ namespace TestPersistence.Impelementations.Repositories.Read
         public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
         {
             string query = @"
-                            SELECT 
-                              cargo_base.Id,cargo_base.Title,cargo_base.InsertTime,cdeclare_status.Title as Status
-                              FROM CargoDeclarationBases cargo_base
-                              inner join CargoDeclarationBaseStatuses cdeclare_status on cdeclare_status.Id = cargo_base.CargoDeclarationBaseStatusId
-                              where cargo_base.CargoOwnerId=@CargoOwnerId
+                            SELECT * from Levels
+                              where Id=@Id
                             ";
 
             DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@CargoOwnerId", LevelId);
+            dynamicParameters.Add("@Id", LevelId);
 
             var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
 
