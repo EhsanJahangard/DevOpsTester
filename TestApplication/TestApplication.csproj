@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TestApplication\TestApplication.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Impelementations\Repositories\" />
+    <ProjectReference Include="..\DevOpsTester\TestDomain\TestDomain.csproj" />
   </ItemGroup>
 
 </Project>
