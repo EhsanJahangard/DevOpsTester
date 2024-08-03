@@ -1,10 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using System.Data;
+using TestPersistence.Interfaces.Read;
 
 namespace TestPersistence.Impelementations.Repositories.Read
 {
-    public class ReadOnlyRepository
+    public class ReadOnlyRepository : IReadOnlyRepository
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Impelementations\Repositories\Read\ReadOnlyRepository.cs~RF2f465c1.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TestApplication\TestApplication.csproj" />
   </ItemGroup>
 
