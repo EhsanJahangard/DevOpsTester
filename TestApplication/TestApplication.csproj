@@ -11,12 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Level\Commands\" />
-    <Folder Include="CQRS\Level\ComamndHandlers\" />
     <Folder Include="CQRS\Level\QueryHandlers\" />
     <Folder Include="CQRS\Level\Queries\" />
     <Folder Include="Convertors\" />
-    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
