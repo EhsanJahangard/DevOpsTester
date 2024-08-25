@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestPersistence.Contexts;
 using TestApplication.Contracts.Repositories.Write;
+using static Dapper.SqlMapper;
 
 namespace TestPersistence.Impelementations.Repositories.Write;
 
@@ -14,14 +15,18 @@ public class WriteOnlyRepository<T> : IWriteOnlyRepository<T> where T : class
         this.context = context;
         DbSet = this.context.Set<T>();
     }
-    public async Task AddAsync(T t)
+    public async Task AddAsync(T entity)
     {
-        await DbSet.AddAsync(t);
+        await DbSet.AddAsync(entity);
     }
 
-    public void Delete(T t)
+    public void Delete(T entity)
     {
-        DbSet.Remove(t);
+        DbSet.Remove(entity);
     }
 
+    public void Update(T entity)
+    {
+        DbSet.Update(entity);
+    }
 }

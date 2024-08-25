@@ -9,10 +9,10 @@ using TestPersistence.Contexts;
 
 #nullable disable
 
-namespace TestEndPoint.Migrations
+namespace TestPersistence.Migrations
 {
     [DbContext(typeof(DevOpsTesterContext))]
-    [Migration("20240825092756_init")]
+    [Migration("20240825135002_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -40,7 +40,8 @@ namespace TestEndPoint.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("UserCreate")
                         .IsRequired()
@@ -62,11 +63,29 @@ namespace TestEndPoint.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<DateTime>("Age")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Family")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
+
+                    b.Property<string>("Mobile")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("UserCreate")
                         .IsRequired()

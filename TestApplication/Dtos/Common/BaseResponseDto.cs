@@ -3,7 +3,7 @@ using System.Net;
 
 namespace TestApplication.Dtos.Common
 {
-    public class BaseResponseDto
+    public record BaseResponseDto
     {
 
         public object? Data { get; set; }

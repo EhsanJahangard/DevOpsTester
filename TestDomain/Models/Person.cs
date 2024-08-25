@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TestDomain.Models;
+﻿namespace TestDomain.Models;
 
 public class Person : Common.BaseEntity<Guid>
 {
+    public string Name { get; set; }    
+    public string Family { get; set; }    
+    public DateTime Age { get; set; }    
+    public string Mobile { get; set; }    
 }

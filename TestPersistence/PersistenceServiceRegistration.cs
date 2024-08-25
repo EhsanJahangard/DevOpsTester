@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
@@ -16,14 +17,16 @@ using TestPersistence.Impelementations.UnitOfWork;
 
 namespace TestPersistence
 {
+
     public static class PersistenceServiceRegistration
     {
         public static void ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             #region ConnectionString
-            var cnn = "Data Source=.;Initial Catalog=DevOpsTester;User ID=sa3;Password=11;MultipleActiveResultSets=true;TrustServerCertificate=True";
+
+            var _connectionString = configuration.GetConnectionString("SqlServer");
             services.AddDbContext<DevOpsTesterContext>(options =>
-                options.UseSqlServer(cnn, b => b.MigrationsAssembly("TestEndPoint")));
+                options.UseSqlServer(_connectionString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name)));
             #endregion
 
             #region RegisterRepositories
@@ -33,7 +36,6 @@ namespace TestPersistence
             services.AddScoped(typeof(IWriteOnlyRepository<>), typeof(WriteOnlyRepository<>));
 
             services.AddScoped<ILevelReadRepository, LevelReadRepository>();
-            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             #endregion
             #region UnitOfWorkRegister
 

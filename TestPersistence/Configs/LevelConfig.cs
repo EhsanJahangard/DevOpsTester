@@ -16,6 +16,8 @@ namespace TestPersistence.Configs
             builder.Property(r => r.Id)
                     .ValueGeneratedOnAdd()
                     .HasDefaultValueSql("NEWID()");
+            builder.Property(r => r.Title)
+                  .HasMaxLength(400);
 
         }
     }

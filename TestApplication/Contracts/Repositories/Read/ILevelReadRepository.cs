@@ -9,7 +9,7 @@ using TestDomain.Models;
 
 namespace TestApplication.Contracts.Repositories.Read;
 
-public interface ILevelReadRepository : IBaseReadRepository<Level, Guid>
+public interface ILevelReadRepository 
 {
     Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken);
 }
