@@ -5,7 +5,7 @@ using TestApplication.CQRS.Level.Commands;
 using TestApplication.Dtos.Common;
 namespace TestEndPoint.Controllers
 {
-    [Route("Level")]
+    [Route("api/[controller]")]
     [ApiController]
     public class LevelController : ControllerBase
     {
@@ -23,8 +23,8 @@ namespace TestEndPoint.Controllers
         //    return Ok(response);
         //}
 
-        [HttpPost]
-        public async Task<ActionResult<BaseResponseDto>> Create(CreateLevelCommand request, CancellationToken cancellationToken)
+        [HttpPost("create")]
+        public async Task<ActionResult<BaseResponseDto>> Create( CreateLevelCommand request, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken);
             return Ok(response);

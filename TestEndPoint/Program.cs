@@ -1,4 +1,6 @@
+using Microsoft.OpenApi.Models;
 using TestApplication;
+using TestEndPoint.Midlewares;
 using TestPersistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,14 @@ builder.Services.ConfigureApplicationServices(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(o =>
+{
+    o.AddPolicy("CorsPolicy", b =>
+    b.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    );
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,10 +35,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseStaticFiles();
+
+app.UseMyExceptionHandler();
+
+app.UseCors("CorsPolicy");
+app.UseRouting();
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
+

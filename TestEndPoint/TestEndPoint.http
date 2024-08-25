@@ -1,6 +1,6 @@
 @TestEndPoint_HostAddress = http://localhost:5297
 
-GET {{TestEndPoint_HostAddress}}/weatherforecast/
+POST {{TestEndPoint_HostAddress}}/api/Level
 Accept: application/json
 
 ###

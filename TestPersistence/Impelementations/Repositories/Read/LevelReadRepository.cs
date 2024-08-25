@@ -16,30 +16,19 @@ namespace TestPersistence.Impelementations.Repositories.Read
         public LevelReadRepository(IConfiguration configuration) : base(configuration)
         {
         }
-
-        public void Create(Level entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Level entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Dispose()
         {
-            throw new NotImplementedException();
+
         }
 
-        public Task<Level> Get(Guid id, CancellationToken cancellationToken)
+        public async Task<Level> Get(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
-        public Task<List<Level>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<Level>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
@@ -58,11 +47,6 @@ namespace TestPersistence.Impelementations.Repositories.Read
         }
 
         public Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Level entity)
         {
             throw new NotImplementedException();
         }

@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="CQRS\Level\QueryHandlers\" />
     <Folder Include="CQRS\Level\Queries\" />
-    <Folder Include="Convertors\" />
   </ItemGroup>
 
   <ItemGroup>

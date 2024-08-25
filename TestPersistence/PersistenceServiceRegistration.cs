@@ -21,10 +21,9 @@ namespace TestPersistence
         public static void ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             #region ConnectionString
-
+            var cnn = "Data Source=.;Initial Catalog=DevOpsTester;User ID=sa3;Password=11;MultipleActiveResultSets=true;TrustServerCertificate=True";
             services.AddDbContext<DevOpsTesterContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
-
+                options.UseSqlServer(cnn, b => b.MigrationsAssembly("TestEndPoint")));
             #endregion
 
             #region RegisterRepositories
