@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestApplication.Contracts.Repositories.ReadWrite;
+using TestApplication.Contracts.Repositories.Read;
 using TestApplication.Dtos.Level;
 using TestDomain.Models;
 
 namespace TestPersistence.Impelementations.Repositories.Read
 {
-    public class LevelReadRepository : ReadOnlyRepository, ILevelRepository
+    public class LevelReadRepository : ReadOnlyRepository, ILevelReadRepository
     {
         public LevelReadRepository(IConfiguration configuration) : base(configuration)
         {

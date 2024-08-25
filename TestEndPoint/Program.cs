@@ -1,8 +1,17 @@
+using TestApplication;
+using TestPersistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+
+
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
+builder.Services.ConfigureApplicationServices(builder.Configuration);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

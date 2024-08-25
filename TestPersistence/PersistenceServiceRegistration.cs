@@ -6,7 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestApplication.Contracts.Repositories.Read;
+using TestApplication.Contracts.Repositories.Write;
+using TestApplication.Contracts.UnitOfWork;
 using TestPersistence.Contexts;
+using TestPersistence.Impelementations.Repositories.Read;
+using TestPersistence.Impelementations.Repositories.Write;
+using TestPersistence.Impelementations.UnitOfWork;
 
 namespace TestPersistence
 {
@@ -20,6 +26,21 @@ namespace TestPersistence
                 options.UseSqlServer(configuration.GetConnectionString("SqlServer")));
 
             #endregion
+
+            #region RegisterRepositories
+
+            services.AddScoped<IReadOnlyRepository, ReadOnlyRepository>();
+
+            services.AddScoped(typeof(IWriteOnlyRepository<>), typeof(WriteOnlyRepository<>));
+
+            services.AddScoped<ILevelReadRepository, LevelReadRepository>();
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            #endregion
+            #region UnitOfWorkRegister
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            #endregion
         }
         //public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
         //{
@@ -31,5 +52,5 @@ namespace TestPersistence
         //}
 
     }
-    
+
 }

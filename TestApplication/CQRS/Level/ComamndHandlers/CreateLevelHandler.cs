@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestApplication.Contracts.Repositories.ReadWrite;
+using TestApplication.Contracts.Repositories.Read;
 using TestApplication.Contracts.UnitOfWork;
 using TestApplication.CQRS.Level.Commands;
 using TestDomain.Models;
@@ -14,9 +14,9 @@ namespace TestApplication.CQRS.Level.ComamndHandlers
     public  class CreateLevelHandler : IRequestHandler<CreateLevelCommand, Dtos.Common.BaseResponseDto>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILevelRepository _levelRepository;
+        private readonly ILevelReadRepository _levelRepository;
         private readonly IMapper _mapper;
-        public CreateLevelHandler(IUnitOfWork unitOfWork, ILevelRepository levelRepository, IMapper mapper)
+        public CreateLevelHandler(IUnitOfWork unitOfWork, ILevelReadRepository levelRepository, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _levelRepository = levelRepository;
