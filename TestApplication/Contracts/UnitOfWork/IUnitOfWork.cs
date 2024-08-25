@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestApplication.Repositories
+namespace TestApplication.Contracts.UnitOfWork
 {
     public interface IUnitOfWork
     {

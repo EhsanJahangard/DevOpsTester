@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TestApplication.Contracts.Repositories.ReadWrite;
+using TestApplication.Contracts.UnitOfWork;
 using TestApplication.CQRS.Level.Commands;
-using TestApplication.Repositories;
 using TestDomain.Models;
 namespace TestApplication.CQRS.Level.ComamndHandlers
 {

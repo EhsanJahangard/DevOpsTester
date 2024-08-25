@@ -24,8 +24,7 @@ namespace TestEndPoint.Controllers
         //}
 
         [HttpPost]
-        public async Task<ActionResult<BaseResponseDto>> Create(CreateLevelCommand request,
-            CancellationToken cancellationToken)
+        public async Task<ActionResult<BaseResponseDto>> Create(CreateLevelCommand request, CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken);
             return Ok(response);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RabbitMQ.Client;
+
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -42,6 +42,7 @@ public class DevOpsTesterContext : DbContext
     private static void Config(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new PersonConfig());
+        modelBuilder.ApplyConfiguration(new LevelConfig());
        
 
         //modelBuilder.SharedTypeEntity<Dictionary<string, object>>("PermissionRole", builder =>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestPersistence.Contexts;
-using TestPersistence.Interfaces.Write;
+using TestApplication.Contracts.Repositories.Write;
 
 namespace TestPersistence.Impelementations.Repositories.Write;
 

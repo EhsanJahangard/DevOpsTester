@@ -1,6 +1,6 @@
 ﻿using TestDomain.Common;
 
-namespace TestApplication.Repositories
+namespace TestApplication.Contracts.Repositories
 {
 
     public interface IBaseRepository<TModel, TKey> : IDisposable where TModel : BaseEntity<TKey>
