@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TestApplication.CQRS.Level.Commands;
-using TestApplication.Dtos.Common;
+using TestApplication.DTOs.Common;
 namespace TestEndPoint.Controllers
 {
     [Route("api/[controller]")]

@@ -2,6 +2,7 @@
 //using FluentValidation.AspNetCore;
 using FluentValidation;
 using MediatR;
+using MediatR.Pipeline;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
@@ -15,7 +16,20 @@ public static class AppicationServiceRegistration
     public static void ConfigureApplicationServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddMediatR(conf => conf.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+            //Behavior for MediatR
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehavior<,>));
+            //cfg.AddOpenRequestPostProcessor(typeof(LoggingPostProcessor<,>));
+            //cfg.AutoRegisterRequestProcessors = false;
+        }
+        );
+        //or add thease lines for add Behavior for MediatR
+        // services.AddTransient(typeof(IRequestPostProcessor<,>), typeof(PostHandler<,>));
+        // services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        // services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehavior<,>));
 
 
         #region FluentValidation
@@ -41,9 +55,8 @@ public static class AppicationServiceRegistration
 
 
 
+        
 
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-       
 
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Net.NetworkInformation;
 using System.Net;
 
-namespace TestApplication.Dtos.Common
+namespace TestApplication.DTOs.Common
 {
     public record BaseResponseDto
     {

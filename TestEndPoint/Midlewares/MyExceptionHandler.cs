@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
-using TestApplication.Dtos.Common;
+using TestApplication.DTOs.Common;
 
 namespace TestEndPoint.Midlewares
 {

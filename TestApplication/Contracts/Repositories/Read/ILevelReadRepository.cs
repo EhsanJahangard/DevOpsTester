@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TestApplication.Dtos.Common;
-using TestApplication.Dtos.Level;
+using TestApplication.DTOs.Common;
+using TestApplication.DTOs.Level;
 using TestDomain.Models;
 
 namespace TestApplication.Contracts.Repositories.Read;

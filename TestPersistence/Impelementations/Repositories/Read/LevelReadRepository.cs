@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.Dtos.Level;
+using TestApplication.DTOs.Level;
 using TestDomain.Models;
 
 namespace TestPersistence.Impelementations.Repositories.Read

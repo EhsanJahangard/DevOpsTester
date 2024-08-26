@@ -13,7 +13,7 @@ using TestApplication.CQRS.Level.Commands;
 using TestDomain.Models;
 namespace TestApplication.CQRS.Level.ComamndHandlers
 {
-    public class CreateLevelHandler : IRequestHandler<CreateLevelCommand, Dtos.Common.BaseResponseDto>
+    public class CreateLevelHandler : IRequestHandler<CreateLevelCommand, DTOs.Common.BaseResponseDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILevelReadRepository _levelRepositoryRead;
@@ -26,7 +26,7 @@ namespace TestApplication.CQRS.Level.ComamndHandlers
             _levelRepositoryWrite = levelRepositoryWrite;
             _mapper = mapper;
         }
-        public async Task<Dtos.Common.BaseResponseDto> Handle(CreateLevelCommand request, CancellationToken cancellationToken)
+        public async Task<DTOs.Common.BaseResponseDto> Handle(CreateLevelCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -36,11 +36,11 @@ namespace TestApplication.CQRS.Level.ComamndHandlers
                 level.UserCreate = "--";
                 await _levelRepositoryWrite.AddAsync(level);
                 await _unitOfWork.Save(cancellationToken);
-                return new Dtos.Common.BaseResponseDto { Data = level };
+                return new DTOs.Common.BaseResponseDto { Data = level };
             }
             catch (Exception ex)
             {
-                return new Dtos.Common.BaseResponseDto(ex);
+                return new DTOs.Common.BaseResponseDto(ex);
             }
         }
     }
