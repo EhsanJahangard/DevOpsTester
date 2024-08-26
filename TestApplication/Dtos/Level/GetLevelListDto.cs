@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TestApplication.Dtos.Level;
 
-namespace TestApplication.Dtos.Level
-{
-    public class GetLevelListDto
-    {
-    }
-}
+public record GetLevelListDto(string title,string user,Guid id);
