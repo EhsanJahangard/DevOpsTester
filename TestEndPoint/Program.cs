@@ -1,10 +1,11 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 using TestApplication;
 using TestEndPoint.Midlewares;
 using TestPersistence;
 
 var builder = WebApplication.CreateBuilder(args);
-
+   
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -26,6 +27,10 @@ builder.Services.AddCors(o =>
     .AllowAnyHeader()
     );
 });
+//Add Middelware Class That Implements IMiddleware Interface
+builder.Services.AddScoped<SecureHeadersMiddleware>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,8 +44,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseStaticFiles();
-
+//With a Middleware Class by Convention
 app.UseMyExceptionHandler();
+//Use Middelware Class That Implements IMiddleware Interface
+app.UseMiddleware<SecureHeadersMiddleware>();
 
 app.UseCors("CorsPolicy");
 app.UseRouting();

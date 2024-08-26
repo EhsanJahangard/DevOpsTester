@@ -4,6 +4,7 @@ using TestApplication.Dtos.Common;
 
 namespace TestEndPoint.Midlewares
 {
+    //With a Middleware Class by Convention
     public class MyExceptionHandler
     {
         private readonly RequestDelegate _next;
@@ -21,35 +22,33 @@ namespace TestEndPoint.Midlewares
             }
             catch (Exception ex)
             {
-                //log 
-                //throw ex;
-
                 if (ex.Message == "خطا در عملیات")
                 {
-                    var res = new BaseResponseDto
+                    var response = new BaseResponseDto
                     {
                         Message = "خطا در عملیات",
                         IsSuccess = false,
+                        Status = HttpStatusCode.ServiceUnavailable
                     };
 
                     httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     httpContext.Response.ContentType = "application/json";
 
-                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(res));
+                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
                 }
-
                 else
                 {
-                    var res = new BaseResponseDto
+                    var response = new BaseResponseDto
                     {
-                        Message = ex.Message + "---" + ex.StackTrace + " ***" + ex.InnerException?.Message,
+                        Message = ex.Message + " * " + ex.StackTrace + " * " + ex.InnerException?.Message,
                         IsSuccess = false,
+                        Status = HttpStatusCode.InternalServerError
                     };
 
                     httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     httpContext.Response.ContentType = "application/json";
 
-                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(res));
+                    await httpContext.Response.WriteAsync(JsonConvert.SerializeObject(response));
                 }
 
                 return;
