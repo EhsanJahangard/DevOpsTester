@@ -9,9 +9,20 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Contracts\" />
-    <Folder Include="CQRS\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Validators\" />
+    <Folder Include="CQRS\Authentication\QueryHandlers\" />
+    <Folder Include="CQRS\Authentication\Queries\" />
+    <Folder Include="Validators\Command\Login\" />
+    <Folder Include="Validators\Command\UserRole\" />
+    <Folder Include="Validators\Command\User\" />
+    <Folder Include="Validators\Command\Token\" />
+    <Folder Include="Validators\Command\RolePermission\" />
+    <Folder Include="Validators\Command\Role\" />
+    <Folder Include="Validators\Command\Permission\" />
+    <Folder Include="Validators\Command\Password\" />
+    <Folder Include="Validators\Query\Permission\" />
+    <Folder Include="Validators\Query\RolePermission\" />
+    <Folder Include="Validators\Query\Role\" />
+    <Folder Include="Validators\Query\User\" />
   </ItemGroup>
 
   <ItemGroup>
