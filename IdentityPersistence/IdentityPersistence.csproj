@@ -6,4 +6,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityApplication\IdentityApplication.csproj" />
+    <ProjectReference Include="..\InfrastructureService\InfrastructureService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configs\" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Impelementations\" />
+  </ItemGroup>
+
 </Project>

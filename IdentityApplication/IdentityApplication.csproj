@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="CQRS\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IdentityDomain\IdentityDomain.csproj" />
+  </ItemGroup>
+
 </Project>
