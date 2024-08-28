@@ -1,16 +1,8 @@
-﻿using FluentValidation;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestApplication.Common.Exceptions;
 
-namespace TestApplication.Common.Behaviors;
-
+namespace IdentityApplication.Common.Behaviors;
 //AOT
 //Behavior Impelementation AOT(Aspect oriented programming) in Mediator
 //DRY (Don't Repeat YourSelf)
@@ -19,7 +11,7 @@ where TRequest : IRequest<TResponse>
 {
     private readonly ILogger<RequestPerformanceBehavior<TRequest, TResponse>> _logger;
 
-    public RequestPerformanceBehavior( ILogger<RequestPerformanceBehavior<TRequest, TResponse>> logger)
+    public RequestPerformanceBehavior(ILogger<RequestPerformanceBehavior<TRequest, TResponse>> logger)
     {
         _logger = logger;
     }

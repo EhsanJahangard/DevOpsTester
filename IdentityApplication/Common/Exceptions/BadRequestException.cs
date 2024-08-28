@@ -1,5 +1,4 @@
-﻿namespace TestApplication.Common.Exceptions;
-
+﻿namespace IdentityApplication.Common.Exceptions;
 public class BadRequestException : Exception
 {
     public BadRequestException(string message) : base(message)

@@ -1,16 +1,8 @@
 ﻿using FluentValidation;
+using IdentityApplication.Common.Exceptions;
 using MediatR;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TestApplication.Common.Exceptions;
 
-namespace TestApplication.Common.Behaviors;
-
+namespace IdentityApplication.Common.Behaviors;
 //AOT
 //Behavior Impelementation AOT(Aspect oriented programming) in Mediator
 //DRY (Don't Repeat YourSelf)
@@ -18,19 +10,19 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
 where TRequest : IRequest<TResponse>
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
-    
+
 
     public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
     {
         _validators = validators;
-        
+
     }
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         if (!_validators.Any()) return await next();
 
-       
+
 
         var context = new ValidationContext<TRequest>(request);
 

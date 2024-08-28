@@ -1,5 +1,4 @@
-﻿namespace TestApplication.Common.Exceptions;
-
+﻿namespace IdentityApplication.Common.Exceptions;
 public class NotFoundException : Exception
 {
     public NotFoundException(string message) : base(message)
