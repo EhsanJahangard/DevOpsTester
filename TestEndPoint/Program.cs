@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.OpenApi.Models;
 using TestApplication;
 using TestEndPoint.Midlewares;
 using TestPersistence;
@@ -8,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
    
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 
 
