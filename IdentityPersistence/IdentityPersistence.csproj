@@ -11,9 +11,4 @@
     <ProjectReference Include="..\InfrastructureService\InfrastructureService.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Configs\" />
-    <Folder Include="Contexts\" />
-  </ItemGroup>
-
 </Project>

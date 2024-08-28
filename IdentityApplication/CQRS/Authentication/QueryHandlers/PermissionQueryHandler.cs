@@ -1,4 +1,5 @@
-﻿using IdentityApplication.CQRS.Authentication.Queries.Permission;
+﻿using IdentityApplication.Contracts.Repositories;
+using IdentityApplication.CQRS.Authentication.Queries.Permission;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;

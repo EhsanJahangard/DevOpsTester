@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-namespace IdentityApplication.Contracts.Repositories.TokenManagers;
+namespace IdentityApplication.Contracts.Repositories;
 
-public interface ITokenManager 
+public interface ITokenManagerRepository
 {
     string GenerateToken(string userId, string username, IList<string> userRoles, IList<string> userPermissions);
     Task<string> GenerateRefreshTokenAsync(string userId);

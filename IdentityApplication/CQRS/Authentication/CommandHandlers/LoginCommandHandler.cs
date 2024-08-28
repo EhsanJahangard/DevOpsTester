@@ -1,9 +1,13 @@
-﻿using IdentityApplication.CQRS.Authentication.Commands.Login;
+﻿using IdentityApplication.Contracts.Repositories;
+using IdentityApplication.Contracts.UnitOfWork;
+using IdentityApplication.CQRS.Authentication.Commands.Login;
+using IdentityApplication.DTOs.Login;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,15 +22,15 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
 {
     private readonly UserManager<User> _userManager;
     private readonly RoleManager<Role> _roleManager;
-    private readonly ITokenManager _tokenManager;
+    private readonly ITokenManagerRepository _tokenManagerRepository;
     private readonly IVerificationCodeRepository _verificationCodeRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public LoginCommandHandler(UserManager<User> userManager, RoleManager<Role> roleManager, ITokenManager tokenManager, IVerificationCodeRepository verificationCodeRepository, IUnitOfWork unitOfWork)
+    public LoginCommandHandler(UserManager<User> userManager, RoleManager<Role> roleManager, ITokenManagerRepository tokenManagerRepository, IVerificationCodeRepository verificationCodeRepository, IUnitOfWork unitOfWork)
     {
         _userManager = userManager;
         _roleManager = roleManager;
-        _tokenManager = tokenManager;
+        _tokenManagerRepository = tokenManagerRepository;
         _verificationCodeRepository = verificationCodeRepository;
         _unitOfWork = unitOfWork;
     }
@@ -53,11 +57,11 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
             else
                 verificationCode.Update(code, DateTime.Now.AddMinutes(3));
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             Sms sms = new Sms() { MobileNumber = "09356735245", Message = $"کد تایید اوستا {code}" };
 
-            MessageBrokerHelper.Publish(JsonConvert.SerializeObject(sms), "sms");
+            //MessageBrokerHelper.Publish(JsonConvert.SerializeObject(sms), "sms");
 
             return new ResponseMessage("کد تایید ارسال شد");
         }
@@ -83,8 +87,8 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
             LoginDto dto = new LoginDto()
             {
                 IsAuthenticated = true,
-                AccessToken = _tokenManager.GenerateToken(user.Id, user.UserName, roles, permissions),
-                RefreshToken = await _tokenManager.GenerateRefreshTokenAsync(user.Id),
+                AccessToken = _tokenManagerRepository.GenerateToken(user.Id, user.UserName, roles, permissions),
+                RefreshToken = await _tokenManagerRepository.GenerateRefreshTokenAsync(user.Id),
                 Roles = roles,
                 Permissions = permissions
             };
@@ -95,5 +99,4 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
             return new ResponseMessage("کد وارد شده صحیح نمی باشد");
     }
 }
-Role
-    User
+

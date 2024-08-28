@@ -1,4 +1,7 @@
-﻿using IdentityApplication.CQRS.Authentication.Commands.Permission;
+﻿using IdentityApplication.Contracts.Repositories;
+using IdentityApplication.Contracts.UnitOfWork;
+using IdentityApplication.Convertors;
+using IdentityApplication.CQRS.Authentication.Commands.Permission;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;
@@ -25,7 +28,7 @@ public class PermissionCommandHandler :
         {
             await _permissionRepository.AddAsync(request.ToModel());
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }
@@ -42,11 +45,11 @@ public class PermissionCommandHandler :
             Permission permission = await _permissionRepository.GetByIdAsync(Guid.Parse(request.Id));
 
             if (permission == null)
-                return new ResponseMessage("پرمیژن وجود ندارد");
+                return new ResponseMessage("مجوز دسترسی وجود ندارد");
 
             permission.Update(request.ToModel());
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }
@@ -63,11 +66,11 @@ public class PermissionCommandHandler :
             Permission permission = await _permissionRepository.GetByIdAsync(Guid.Parse(request.Id));
 
             if (permission == null)
-                return new ResponseMessage("پرمیژن وجود ندارد");
+                return new ResponseMessage("مجوز دسترسی وجود ندارد");
 
             _permissionRepository.Delete(permission);
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }

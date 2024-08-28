@@ -1,4 +1,6 @@
-﻿using IdentityApplication.CQRS.Authentication.Commands.User;
+﻿using IdentityApplication.Contracts.UnitOfWork;
+using IdentityApplication.Convertors;
+using IdentityApplication.CQRS.Authentication.Commands.User;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;
@@ -12,11 +14,11 @@ public class UserCommandHandler :
        IRequestHandler<DeleteUserCommand, ResponseMessage>
 {
     private readonly UserManager<User> _userManager;
-    private readonly IdentityDBContext _authenticationContext;
-    public UserCommandHandler(UserManager<User> userManager, IdentityDBContext authenticationContext)
+    private readonly IUnitOfWork _unitOfWork;
+    public UserCommandHandler(IUnitOfWork unitOfWork, UserManager<User> userManager)
     {
         _userManager = userManager;
-        _authenticationContext = authenticationContext;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ResponseMessage> Handle(AddUserCommand request, CancellationToken cancellationToken)
@@ -50,7 +52,7 @@ public class UserCommandHandler :
 
             user.Update(request.ToModel());
 
-            int result = await _authenticationContext.SaveChangesAsync();
+            int result = await _unitOfWork.Save();
 
             if (result != 1)
                 return new ResponseMessage("مشکلی در ویرایش اطلاعات کاربر وجود دارد");

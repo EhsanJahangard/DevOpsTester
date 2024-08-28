@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IdentityPersistence
+namespace IdentityPersistence;
+
+public class PersistenceServiceRegistration
 {
-    internal class PersistenceServiceRegistration
-    {
-    }
 }

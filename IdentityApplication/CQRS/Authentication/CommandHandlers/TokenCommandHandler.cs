@@ -1,4 +1,7 @@
-﻿using IdentityApplication.CQRS.Authentication.Commands.Token;
+﻿using IdentityApplication.Contracts.Repositories;
+using IdentityApplication.Contracts.UnitOfWork;
+using IdentityApplication.CQRS.Authentication.Commands.Token;
+using IdentityApplication.DTOs.Login;
 using InfrastructureService;
 using MediatR;
 using System.Net;
@@ -8,11 +11,12 @@ namespace IdentityApplication.CQRS.Authentication.CommandHandlers;
 
 internal class TokenCommandHandler : IRequestHandler<GenereateRefreshTokenCommand, ResponseMessage>
 {
-    private readonly ITokenManager _tokenManager;
+    private readonly ITokenManagerRepository _tokenManager;
     private readonly IRefreshTokenRepository _refreshTokenRepository;
-
-    public TokenCommandHandler(ITokenManager tokenManager, IRefreshTokenRepository refreshTokenRepository)
+   
+    public TokenCommandHandler(ITokenManagerRepository tokenManager, IRefreshTokenRepository refreshTokenRepository)
     {
+      
         _tokenManager = tokenManager;
         _refreshTokenRepository = refreshTokenRepository;
     }

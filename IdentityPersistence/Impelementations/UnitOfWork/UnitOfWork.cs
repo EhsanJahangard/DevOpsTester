@@ -1,4 +1,5 @@
 ﻿using IdentityApplication.Contracts.UnitOfWork;
+using IdentityPersistence.Contexts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,15 @@ namespace IdentityPersistence.Impelementations.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private readonly DevOpsTesterContext context;
-    public UnitOfWork(DevOpsTesterContext context)
+    private readonly IdentityDBContext context;
+    public UnitOfWork(IdentityDBContext context)
     {
         this.context = context;
     }
 
-    public async Task Save(CancellationToken cancellationToke)
+    public async Task<int> Save()
     {
-        await context.SaveChangesAsync();
+       return await context.SaveChangesAsync();
     }
 
 

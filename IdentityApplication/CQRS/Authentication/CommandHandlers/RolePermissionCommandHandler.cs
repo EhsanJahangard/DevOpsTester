@@ -1,8 +1,11 @@
-﻿using IdentityApplication.CQRS.Authentication.Commands.RolePermission;
+﻿using IdentityApplication.Contracts.Repositories;
+using IdentityApplication.Contracts.UnitOfWork;
+using IdentityApplication.CQRS.Authentication.Commands.RolePermission;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdentityApplication.CQRS.Authentication.CommandHandlers;
 
@@ -41,7 +44,7 @@ public class RolePermissionCommandHandler :
 
             role.AddPermissions(permissions);
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }
@@ -73,7 +76,7 @@ public class RolePermissionCommandHandler :
 
             role.AddPermissions(permissions);
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }
@@ -97,7 +100,7 @@ public class RolePermissionCommandHandler :
 
             role.Permissions.Clear();
 
-            await _unitOfWork.SaveChangesAsync();
+            await _unitOfWork.Save();
 
             return new ResponseMessage();
         }

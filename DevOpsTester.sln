@@ -43,13 +43,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{ACE4999D-6AC3-4582-B2A2-77B4C4B8EB33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityDomain", "IdentityDomain\IdentityDomain.csproj", "{4A82E404-3B15-45A6-8169-6DC4EE815C1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityDomain", "IdentityDomain\IdentityDomain.csproj", "{4A82E404-3B15-45A6-8169-6DC4EE815C1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityApplication", "IdentityApplication\IdentityApplication.csproj", "{8CED6C11-F247-40AC-8B56-268CF64B3D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityApplication", "IdentityApplication\IdentityApplication.csproj", "{8CED6C11-F247-40AC-8B56-268CF64B3D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityPersistence", "IdentityPersistence\IdentityPersistence.csproj", "{307AA9E3-52F6-4B31-9896-B0C963954C63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityPersistence", "IdentityPersistence\IdentityPersistence.csproj", "{307AA9E3-52F6-4B31-9896-B0C963954C63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityEndPoint", "IdentityEndPoint\IdentityEndPoint.csproj", "{52880008-03ED-4CDC-AFEB-16F99830634C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityEndPoint", "IdentityEndPoint\IdentityEndPoint.csproj", "{52880008-03ED-4CDC-AFEB-16F99830634C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
