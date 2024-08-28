@@ -14,7 +14,6 @@
   <ItemGroup>
     <Folder Include="Configs\" />
     <Folder Include="Contexts\" />
-    <Folder Include="Impelementations\" />
   </ItemGroup>
 
 </Project>
