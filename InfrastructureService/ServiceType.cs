@@ -1,9 +1,8 @@
-﻿namespace InfrastructureService
+﻿namespace InfrastructureService;
+
+public enum ServiceType
 {
-    public enum ServiceType
-    {
-        None,
-        Authentication,
-        TestService
-    }
+    None,
+    Authentication,
+    TestService
 }
