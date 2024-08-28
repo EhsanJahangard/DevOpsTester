@@ -27,5 +27,6 @@ public class IdentityDBContext : IdentityDbContext<User, Role, string>
         
         builder.ApplyConfigurationsFromAssembly(typeof(PermissionConfig).Assembly);
         builder.Seed();
+        
     }
 }

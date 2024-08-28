@@ -13,14 +13,12 @@ namespace IdentityEndPoint.Attributes;
 public class PermissionAttribute : AuthorizeAttribute, IAuthorizationFilter
 {
     private string _accessToken;
+    public string _permission { get; set; }
 
     public PermissionAttribute(string permission)
     {
-        Permission = permission;
+        _permission = permission;
     }
-
-    public string Permission { get; set; }
-
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         _accessToken = context.HttpContext.Request.Headers["Authorization"].ToString();
@@ -33,7 +31,7 @@ public class PermissionAttribute : AuthorizeAttribute, IAuthorizationFilter
 
             var permissions = JsonSerializer.Deserialize<IList<string>>(userPermissions);
 
-            if (!permissions.Contains(Permission))
+            if (!permissions.Contains(_permission))
                 context.Result = new UnauthorizedResult();
         }
         else
