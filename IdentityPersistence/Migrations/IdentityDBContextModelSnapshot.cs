@@ -33,7 +33,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatorDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -44,7 +44,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("EditorDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -65,7 +65,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("ExpireTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("RefreshTokenId")
                         .HasColumnType("uuid");
@@ -85,7 +85,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Creator")
                         .IsRequired()
@@ -96,7 +96,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("EditDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Editor")
                         .IsRequired()
@@ -121,12 +121,12 @@ namespace IdentityPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e8e6e48d-f51d-48c7-914d-7c7939661856",
-                            ConcurrencyStamp = "769b5ce4-e080-4ef5-8110-da391ab7c021",
-                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2228),
+                            Id = "0584a526-525e-4eda-b703-86af2e696555",
+                            ConcurrencyStamp = "0a47ea2f-321e-4a0a-822e-a535ccac2789",
+                            CreateDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8314),
                             Creator = "2",
                             Description = "admin2",
-                            EditDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2229),
+                            EditDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8322),
                             Editor = "2",
                             Name = "admin2"
                         });
@@ -140,9 +140,6 @@ namespace IdentityPersistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("Age")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<int?>("City")
                         .HasColumnType("integer");
 
@@ -154,7 +151,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Creator")
                         .IsRequired()
@@ -216,7 +213,7 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -236,13 +233,12 @@ namespace IdentityPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "187a0d47-9857-4bfd-897e-6c09e47ccebc",
+                            Id = "c244c3a6-49db-4dc7-ad03-d9133b478219",
                             AccessFailedCount = 0,
-                            Age = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             City = 0,
-                            ConcurrencyStamp = "daf6707d-0255-4d0f-ac20-3eee929154fc",
+                            ConcurrencyStamp = "eac9911a-faac-4af5-9ffc-3cadf0e4e631",
                             Country = 0,
-                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2353),
+                            CreateDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8482),
                             Creator = "2",
                             Editor = "2",
                             Email = "ehsanjahangard2020@gmail.com",
@@ -253,20 +249,19 @@ namespace IdentityPersistence.Migrations
                             Mobile = "09220127867",
                             PhoneNumberConfirmed = false,
                             PostalCode = "0000000000",
-                            SecurityStamp = "969f0e6f-5279-48d3-abec-a62afb143f64",
+                            SecurityStamp = "7e8de623-5b10-44ed-ae25-cc5641ecda72",
                             TwoFactorEnabled = false,
-                            UpdateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2361),
+                            UpdateDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8483),
                             UserName = "ehsanjahangardadmin"
                         },
                         new
                         {
-                            Id = "9c170495-e4a4-404f-aab8-f2a69baf8b6f",
+                            Id = "68f4b08b-b37f-46a5-8667-b7d272ba6753",
                             AccessFailedCount = 0,
-                            Age = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             City = 0,
-                            ConcurrencyStamp = "51bd4b2f-ef4b-477c-a5a3-84beea1d8416",
+                            ConcurrencyStamp = "4761002e-fdc1-4f28-a39a-56bb2eebea85",
                             Country = 0,
-                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366),
+                            CreateDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8487),
                             Creator = "2",
                             Editor = "2",
                             Email = "ehsanjahangard2014@gmail.com",
@@ -277,9 +272,9 @@ namespace IdentityPersistence.Migrations
                             Mobile = "09169976779",
                             PhoneNumberConfirmed = false,
                             PostalCode = "0000000000",
-                            SecurityStamp = "dbebb63f-3810-4f3e-b081-b8212edc658c",
+                            SecurityStamp = "c24846ba-7da6-4160-a53a-b2f71f4515dc",
                             TwoFactorEnabled = false,
-                            UpdateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366),
+                            UpdateDate = new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8488),
                             UserName = "admin2"
                         });
                 });
@@ -297,13 +292,13 @@ namespace IdentityPersistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("ExpireTime")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Username")
                         .IsRequired()

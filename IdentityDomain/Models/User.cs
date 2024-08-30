@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
 
 namespace IdentityDomain.Models;
 
@@ -22,10 +24,13 @@ public class User : IdentityUser
     public int? Country { get; private set; } = 0;
     public string? PostalCode { get; private set; } = "0000000000";
     public string Creator { get; private set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime CreateDate { get; private set; }
     public string Editor { get; set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime UpdateDate { get; set; }
-    public DateTime Age { get; set; }
+  
+   
 
     public void Update(User user)
     {
@@ -34,7 +39,7 @@ public class User : IdentityUser
         Email = user.Email;
         Mobile = user.Mobile;
         Editor = user.Editor;
-        UpdateDate = DateTime.UtcNow;
+        UpdateDate = DateTime.Now;
     }
 
     private User() { }

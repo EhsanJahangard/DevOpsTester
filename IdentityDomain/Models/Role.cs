@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdentityDomain.Models;
 
@@ -9,17 +10,19 @@ public class Role : IdentityRole
         Description = description;
         ConcurrencyStamp = Guid.NewGuid().ToString();
         Creator = sender;
-        CreateDate = DateTime.UtcNow;
+        CreateDate = DateTime.Now;
         Editor = sender;
-        EditDate = DateTime.UtcNow;
+        EditDate = DateTime.Now;
         Permissions = [];
 
     }
 
     public string Description { get; private set; }
     public string Creator { get; private set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime CreateDate { get; private set; }
     public string Editor { get; private set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime EditDate { get; private set; }
 
     public List<Permission> Permissions { get; private set; }
@@ -29,7 +32,7 @@ public class Role : IdentityRole
         Name = role.Name;
         Description = role.Description;
         Editor = role.Editor;
-        EditDate = DateTime.UtcNow;
+        EditDate = DateTime.Now;
     }
 
     public void AddPermissions(List<Permission> permissions)

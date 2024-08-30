@@ -21,9 +21,9 @@ namespace IdentityPersistence.Migrations
                     Id = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     Creator = table.Column<string>(type: "text", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Editor = table.Column<string>(type: "text", nullable: false),
-                    EditDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EditDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
@@ -45,10 +45,9 @@ namespace IdentityPersistence.Migrations
                     Country = table.Column<int>(type: "integer", nullable: true),
                     PostalCode = table.Column<string>(type: "text", nullable: true),
                     Creator = table.Column<string>(type: "text", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Editor = table.Column<string>(type: "text", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Age = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -78,9 +77,9 @@ namespace IdentityPersistence.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     ServiceType = table.Column<int>(type: "integer", nullable: false),
                     Creator = table.Column<string>(type: "text", nullable: false),
-                    CreatorDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatorDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Editor = table.Column<string>(type: "text", nullable: false),
-                    EditorDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    EditorDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -93,7 +92,7 @@ namespace IdentityPersistence.Migrations
                 {
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     RefreshTokenId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ExpireTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    ExpireTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,9 +107,9 @@ namespace IdentityPersistence.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Username = table.Column<string>(type: "text", nullable: false),
                     Code = table.Column<string>(type: "text", nullable: false),
-                    ExpireTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    ExpireTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -250,15 +249,15 @@ namespace IdentityPersistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "Creator", "Description", "EditDate", "Editor", "Name", "NormalizedName" },
-                values: new object[] { "e8e6e48d-f51d-48c7-914d-7c7939661856", "769b5ce4-e080-4ef5-8110-da391ab7c021", new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2228), "2", "admin2", new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2229), "2", "admin2", null });
+                values: new object[] { "0584a526-525e-4eda-b703-86af2e696555", "0a47ea2f-321e-4a0a-822e-a535ccac2789", new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8314), "2", "admin2", new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8322), "2", "admin2", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "Age", "City", "ConcurrencyStamp", "Country", "CreateDate", "Creator", "Editor", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Mobile", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "SecurityStamp", "TwoFactorEnabled", "UpdateDate", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Country", "CreateDate", "Creator", "Editor", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Mobile", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "SecurityStamp", "TwoFactorEnabled", "UpdateDate", "UserName" },
                 values: new object[,]
                 {
-                    { "187a0d47-9857-4bfd-897e-6c09e47ccebc", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 0, "daf6707d-0255-4d0f-ac20-3eee929154fc", 0, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2353), "2", "2", "ehsanjahangard2020@gmail.com", false, "ehsan2", "jahangard2", false, null, "09220127867", null, null, null, null, false, "0000000000", "969f0e6f-5279-48d3-abec-a62afb143f64", false, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2361), "ehsanjahangardadmin" },
-                    { "9c170495-e4a4-404f-aab8-f2a69baf8b6f", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 0, "51bd4b2f-ef4b-477c-a5a3-84beea1d8416", 0, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366), "2", "2", "ehsanjahangard2014@gmail.com", false, "ehsan3", "jahangard3", false, null, "09169976779", null, null, null, null, false, "0000000000", "dbebb63f-3810-4f3e-b081-b8212edc658c", false, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366), "admin2" }
+                    { "68f4b08b-b37f-46a5-8667-b7d272ba6753", 0, 0, "4761002e-fdc1-4f28-a39a-56bb2eebea85", 0, new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8487), "2", "2", "ehsanjahangard2014@gmail.com", false, "ehsan3", "jahangard3", false, null, "09169976779", null, null, null, null, false, "0000000000", "c24846ba-7da6-4160-a53a-b2f71f4515dc", false, new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8488), "admin2" },
+                    { "c244c3a6-49db-4dc7-ad03-d9133b478219", 0, 0, "eac9911a-faac-4af5-9ffc-3cadf0e4e631", 0, new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8482), "2", "2", "ehsanjahangard2020@gmail.com", false, "ehsan2", "jahangard2", false, null, "09220127867", null, null, null, null, false, "0000000000", "7e8de623-5b10-44ed-ae25-cc5641ecda72", false, new DateTime(2024, 8, 30, 23, 25, 34, 181, DateTimeKind.Local).AddTicks(8483), "ehsanjahangardadmin" }
                 });
 
             migrationBuilder.CreateIndex(

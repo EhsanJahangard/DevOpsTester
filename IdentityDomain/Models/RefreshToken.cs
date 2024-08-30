@@ -1,4 +1,6 @@
-﻿namespace IdentityDomain.Models;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace IdentityDomain.Models;
 
 
 public class RefreshToken
@@ -7,17 +9,18 @@ public class RefreshToken
     {
         UserId = userId;
         RefreshTokenId = Guid.NewGuid();
-        ExpireTime = expireTime.ToUniversalTime();
+        ExpireTime = expireTime;
     }
 
     public Guid UserId { get; private set; }
     public Guid RefreshTokenId { get; private set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime ExpireTime { get; private set; }
 
     public void Update(RefreshToken refreshToken)
     {
         RefreshTokenId = refreshToken.RefreshTokenId;
-        ExpireTime = refreshToken.ExpireTime.ToUniversalTime();
+        ExpireTime = refreshToken.ExpireTime;
     }
 }
 

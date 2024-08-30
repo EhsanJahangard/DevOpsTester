@@ -1,4 +1,5 @@
 ﻿using InfrastructureService;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdentityDomain.Models;
 
@@ -12,17 +13,20 @@ public class Permission
         Description = description;
         ServiceType = serviceType;
         Creator = sender;
-        CreatorDate = DateTime.UtcNow;
+        CreatorDate = DateTime.Now;
         Editor = sender;
-        EditorDate = DateTime.UtcNow;
+        EditorDate = DateTime.Now;
     }
     public Guid Id { get; private set; }
     public string Name { get; private set; }
     public string Description { get; private set; }
     public ServiceType ServiceType { get; private set; }
     public string Creator { get; private set; }
+    //for resolve UTC Time PostgreSql
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime CreatorDate { get; private set; }
     public string Editor { get; private set; }
+    [Column(TypeName = "timestamp without time zone")]
     public DateTime EditorDate { get; private set; }
 
     public void Update(Permission permission)
