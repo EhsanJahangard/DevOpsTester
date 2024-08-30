@@ -47,7 +47,8 @@ namespace IdentityPersistence.Migrations
                     Creator = table.Column<string>(type: "text", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Editor = table.Column<string>(type: "text", nullable: false),
-                    EditDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Age = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -249,15 +250,15 @@ namespace IdentityPersistence.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "CreateDate", "Creator", "Description", "EditDate", "Editor", "Name", "NormalizedName" },
-                values: new object[] { "92ce5896-b279-4189-8fb7-fb4435feb98f", "2fa8c02e-39e4-43e4-8089-d7f727835f9d", new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(287), "2", "admin2", new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(289), "2", "admin2", null });
+                values: new object[] { "e8e6e48d-f51d-48c7-914d-7c7939661856", "769b5ce4-e080-4ef5-8110-da391ab7c021", new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2228), "2", "admin2", new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2229), "2", "admin2", null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "City", "ConcurrencyStamp", "Country", "CreateDate", "Creator", "EditDate", "Editor", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Mobile", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                columns: new[] { "Id", "AccessFailedCount", "Age", "City", "ConcurrencyStamp", "Country", "CreateDate", "Creator", "Editor", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "Mobile", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "PostalCode", "SecurityStamp", "TwoFactorEnabled", "UpdateDate", "UserName" },
                 values: new object[,]
                 {
-                    { "00ee2e3b-9623-4301-866d-7e10bd89fd87", 0, 0, "6762b983-0b2f-4944-a7b4-e77446dced34", 0, new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(457), "2", new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(457), "2", "ehsanjahangard2014@gmail.com", false, "ehsan3", "jahangard3", false, null, "09169976779", null, null, null, null, false, "0000000000", "d3887344-1053-46a7-aefa-6f131b4f9081", false, "admin2" },
-                    { "4bead2bc-c13a-44cf-93bc-b9ba74fe75de", 0, 0, "ad77f06d-ded5-4ddd-a5a7-e3ba30c88030", 0, new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(441), "2", new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(442), "2", "ehsanjahangard2020@gmail.com", false, "ehsan2", "jahangard2", false, null, "09220127867", null, null, null, null, false, "0000000000", "4ff7b014-db1f-4acb-933e-ffd04dd19bcd", false, "ehsanjahangardadmin" }
+                    { "187a0d47-9857-4bfd-897e-6c09e47ccebc", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 0, "daf6707d-0255-4d0f-ac20-3eee929154fc", 0, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2353), "2", "2", "ehsanjahangard2020@gmail.com", false, "ehsan2", "jahangard2", false, null, "09220127867", null, null, null, null, false, "0000000000", "969f0e6f-5279-48d3-abec-a62afb143f64", false, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2361), "ehsanjahangardadmin" },
+                    { "9c170495-e4a4-404f-aab8-f2a69baf8b6f", 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 0, "51bd4b2f-ef4b-477c-a5a3-84beea1d8416", 0, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366), "2", "2", "ehsanjahangard2014@gmail.com", false, "ehsan3", "jahangard3", false, null, "09169976779", null, null, null, null, false, "0000000000", "dbebb63f-3810-4f3e-b081-b8212edc658c", false, new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366), "admin2" }
                 });
 
             migrationBuilder.CreateIndex(

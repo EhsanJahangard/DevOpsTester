@@ -121,12 +121,12 @@ namespace IdentityPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "92ce5896-b279-4189-8fb7-fb4435feb98f",
-                            ConcurrencyStamp = "2fa8c02e-39e4-43e4-8089-d7f727835f9d",
-                            CreateDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(287),
+                            Id = "e8e6e48d-f51d-48c7-914d-7c7939661856",
+                            ConcurrencyStamp = "769b5ce4-e080-4ef5-8110-da391ab7c021",
+                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2228),
                             Creator = "2",
                             Description = "admin2",
-                            EditDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(289),
+                            EditDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2229),
                             Editor = "2",
                             Name = "admin2"
                         });
@@ -139,6 +139,9 @@ namespace IdentityPersistence.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
+
+                    b.Property<DateTime>("Age")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("City")
                         .HasColumnType("integer");
@@ -156,9 +159,6 @@ namespace IdentityPersistence.Migrations
                     b.Property<string>("Creator")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("EditDate")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Editor")
                         .IsRequired()
@@ -215,6 +215,9 @@ namespace IdentityPersistence.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)");
@@ -233,14 +236,14 @@ namespace IdentityPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4bead2bc-c13a-44cf-93bc-b9ba74fe75de",
+                            Id = "187a0d47-9857-4bfd-897e-6c09e47ccebc",
                             AccessFailedCount = 0,
+                            Age = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             City = 0,
-                            ConcurrencyStamp = "ad77f06d-ded5-4ddd-a5a7-e3ba30c88030",
+                            ConcurrencyStamp = "daf6707d-0255-4d0f-ac20-3eee929154fc",
                             Country = 0,
-                            CreateDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(441),
+                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2353),
                             Creator = "2",
-                            EditDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(442),
                             Editor = "2",
                             Email = "ehsanjahangard2020@gmail.com",
                             EmailConfirmed = false,
@@ -250,20 +253,21 @@ namespace IdentityPersistence.Migrations
                             Mobile = "09220127867",
                             PhoneNumberConfirmed = false,
                             PostalCode = "0000000000",
-                            SecurityStamp = "4ff7b014-db1f-4acb-933e-ffd04dd19bcd",
+                            SecurityStamp = "969f0e6f-5279-48d3-abec-a62afb143f64",
                             TwoFactorEnabled = false,
+                            UpdateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2361),
                             UserName = "ehsanjahangardadmin"
                         },
                         new
                         {
-                            Id = "00ee2e3b-9623-4301-866d-7e10bd89fd87",
+                            Id = "9c170495-e4a4-404f-aab8-f2a69baf8b6f",
                             AccessFailedCount = 0,
+                            Age = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             City = 0,
-                            ConcurrencyStamp = "6762b983-0b2f-4944-a7b4-e77446dced34",
+                            ConcurrencyStamp = "51bd4b2f-ef4b-477c-a5a3-84beea1d8416",
                             Country = 0,
-                            CreateDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(457),
+                            CreateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366),
                             Creator = "2",
-                            EditDate = new DateTime(2024, 8, 30, 19, 14, 56, 950, DateTimeKind.Utc).AddTicks(457),
                             Editor = "2",
                             Email = "ehsanjahangard2014@gmail.com",
                             EmailConfirmed = false,
@@ -273,8 +277,9 @@ namespace IdentityPersistence.Migrations
                             Mobile = "09169976779",
                             PhoneNumberConfirmed = false,
                             PostalCode = "0000000000",
-                            SecurityStamp = "d3887344-1053-46a7-aefa-6f131b4f9081",
+                            SecurityStamp = "dbebb63f-3810-4f3e-b081-b8212edc658c",
                             TwoFactorEnabled = false,
+                            UpdateDate = new DateTime(2024, 8, 30, 19, 36, 13, 52, DateTimeKind.Utc).AddTicks(2366),
                             UserName = "admin2"
                         });
                 });

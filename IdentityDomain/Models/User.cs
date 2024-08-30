@@ -11,9 +11,9 @@ public class User : IdentityUser
         Email = email;
         Mobile = mobile;
         Creator = sender;
-        CreateDate = DateTime.UtcNow;
+        CreateDate = DateTime.Now;
         Editor = sender;
-        EditDate = DateTime.UtcNow;
+        UpdateDate = DateTime.Now;
     }
     public string FirstName { get; private set; }
     public string LastName { get; private set; }
@@ -24,7 +24,8 @@ public class User : IdentityUser
     public string Creator { get; private set; }
     public DateTime CreateDate { get; private set; }
     public string Editor { get; set; }
-    public DateTime EditDate { get; set; }
+    public DateTime UpdateDate { get; set; }
+    public DateTime Age { get; set; }
 
     public void Update(User user)
     {
@@ -33,7 +34,7 @@ public class User : IdentityUser
         Email = user.Email;
         Mobile = user.Mobile;
         Editor = user.Editor;
-        EditDate = DateTime.UtcNow;
+        UpdateDate = DateTime.UtcNow;
     }
 
     private User() { }

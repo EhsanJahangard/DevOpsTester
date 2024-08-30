@@ -28,9 +28,9 @@ public class IdentityDBContext : IdentityDbContext<User, Role, string>
                 v => v.ToUniversalTime(),   // تبدیل DateTime به UTC برای ذخیره‌سازی
                     v => DateTime.SpecifyKind(v, DateTimeKind.Utc) // تبدیل دوباره به UTC هنگام بازیابی
                                                                  ); 
-        builder.Entity<RefreshToken>()
-                 .Property(p => p.ExpireTime)
-                .HasConversion(dateTimeConverter);
+        //builder.Entity<RefreshToken>()
+        //         .Property(p => p.ExpireTime)
+        //        .HasConversion(dateTimeConverter);
 
         foreach (var entityType in builder.Model.GetEntityTypes())
         {

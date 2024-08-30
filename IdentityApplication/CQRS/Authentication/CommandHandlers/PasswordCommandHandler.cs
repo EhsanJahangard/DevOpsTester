@@ -30,7 +30,7 @@ public class PasswordCommandHandler :
                 return new ResponseMessage("کاربر مورد نظر وجود ندارد");
 
             user.Editor = request.Sender;
-            user.EditDate = DateTime.Now;
+            user.UpdateDate = DateTime.Now;
 
             IdentityResult identityResult = await _userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
 
@@ -59,7 +59,7 @@ public class PasswordCommandHandler :
             if (identityResult.Succeeded)
             {
                 user.Editor = request.Sender;
-                user.EditDate = DateTime.Now;
+                user.UpdateDate = DateTime.Now;
 
                 identityResult = await _userManager.AddPasswordAsync(user, _configuration["DefaultPassword"]);
 
