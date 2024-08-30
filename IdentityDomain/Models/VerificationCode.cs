@@ -15,16 +15,16 @@ public class VerificationCode
     {
         Username = username;
         Code = code;
-        ExpireTime = expireTime;
-        CreateDate = DateTime.Now;
-        UpdateDate = DateTime.Now;
+        ExpireTime = expireTime.ToUniversalTime();
+        CreateDate = DateTime.UtcNow;
+        UpdateDate = DateTime.UtcNow;
     }
 
     public void Update(string code, DateTime expireTime)
     {
         Code = code;
-        ExpireTime = expireTime;
-        UpdateDate = DateTime.Now;
+        ExpireTime = expireTime.ToUniversalTime();
+        UpdateDate = DateTime.UtcNow;
     }
 }
 

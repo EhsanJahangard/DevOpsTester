@@ -76,7 +76,7 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
     {
         VerificationCode verificationCode = await _verificationCodeRepository.GetByUsernameAsync(request.Username);
 
-        if (verificationCode != null && request.VerificationCode == verificationCode.Code && verificationCode.ExpireTime > DateTime.Now)
+        if (verificationCode != null && request.VerificationCode == verificationCode.Code && verificationCode.ExpireTime > DateTime.UtcNow)
         {
             User user = await _userManager.FindByNameAsync(request.Username);
 

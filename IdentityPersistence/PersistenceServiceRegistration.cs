@@ -20,9 +20,17 @@ public static class PersistenceServiceRegistration
     {
         #region ConnectionString
 
-        var _connectionString = configuration.GetConnectionString("SqlServerIdentity");
+        var _connectionStringSql = configuration.GetConnectionString("SqlServerIdentity");
+        var _connectionStringNgp = configuration.GetConnectionString("NpgIdentity");
+
+        //for sql server
+        // services.AddDbContext<IdentityDBContext>(options =>
+        //     options.UseSqlServer(_connectionStringSql, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name)));
+
+        //for postgresql
         services.AddDbContext<IdentityDBContext>(options =>
-            options.UseSqlServer(_connectionString, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name)));
+                 options.UseNpgsql(_connectionStringNgp, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name))
+        );
 
         services.AddIdentity<User, Role>((IdentityOptions options) => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityDBContext>();
 

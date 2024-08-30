@@ -12,9 +12,9 @@ public class Permission
         Description = description;
         ServiceType = serviceType;
         Creator = sender;
-        CreatorDate = DateTime.Now;
+        CreatorDate = DateTime.UtcNow;
         Editor = sender;
-        EditorDate = DateTime.Now;
+        EditorDate = DateTime.UtcNow;
     }
     public Guid Id { get; private set; }
     public string Name { get; private set; }

@@ -7,7 +7,7 @@ public class RefreshToken
     {
         UserId = userId;
         RefreshTokenId = Guid.NewGuid();
-        ExpireTime = expireTime;
+        ExpireTime = expireTime.ToUniversalTime();
     }
 
     public Guid UserId { get; private set; }
@@ -17,7 +17,7 @@ public class RefreshToken
     public void Update(RefreshToken refreshToken)
     {
         RefreshTokenId = refreshToken.RefreshTokenId;
-        ExpireTime = refreshToken.ExpireTime;
+        ExpireTime = refreshToken.ExpireTime.ToUniversalTime();
     }
 }
 

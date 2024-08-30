@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection.Emit;
-
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdentityPersistence.Contexts;
 
 public class IdentityDBContext : IdentityDbContext<User, Role, string>
@@ -23,10 +23,28 @@ public class IdentityDBContext : IdentityDbContext<User, Role, string>
     }
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
-        
+        //برای مشکل postgresql
+        var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
+                v => v.ToUniversalTime(),   // تبدیل DateTime به UTC برای ذخیره‌سازی
+                    v => DateTime.SpecifyKind(v, DateTimeKind.Utc) // تبدیل دوباره به UTC هنگام بازیابی
+                                                                 ); 
+        builder.Entity<RefreshToken>()
+                 .Property(p => p.ExpireTime)
+                .HasConversion(dateTimeConverter);
+
+        foreach (var entityType in builder.Model.GetEntityTypes())
+        {
+            var properties = entityType.ClrType.GetProperties()
+                .Where(p => p.PropertyType == typeof(DateTime) || p.PropertyType == typeof(DateTime?));
+
+            foreach (var property in properties)
+            {
+                builder.Entity(entityType.Name).Property(property.Name)
+                    .HasConversion(dateTimeConverter);
+            }
+        }
         builder.ApplyConfigurationsFromAssembly(typeof(PermissionConfig).Assembly);
         builder.Seed();
-        
+        base.OnModelCreating(builder);
     }
 }

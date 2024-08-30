@@ -9,9 +9,9 @@ public class Role : IdentityRole
         Description = description;
         ConcurrencyStamp = Guid.NewGuid().ToString();
         Creator = sender;
-        CreateDate = DateTime.Now;
+        CreateDate = DateTime.UtcNow;
         Editor = sender;
-        EditDate = DateTime.Now;
+        EditDate = DateTime.UtcNow;
         Permissions = [];
 
     }
@@ -29,7 +29,7 @@ public class Role : IdentityRole
         Name = role.Name;
         Description = role.Description;
         Editor = role.Editor;
-        EditDate = DateTime.Now;
+        EditDate = DateTime.UtcNow;
     }
 
     public void AddPermissions(List<Permission> permissions)
