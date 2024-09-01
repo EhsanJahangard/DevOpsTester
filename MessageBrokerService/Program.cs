@@ -19,7 +19,7 @@ static void Consumer_Received(object? sender, BasicDeliverEventArgs e)
 
     Sms sms = JsonConvert.DeserializeObject<Sms>(message);
 
-    string url = "https://localhost:7244/api/sms/send";
+    string url = "https://localhost:44337/api/sms/send";
     object data = new { MobileNumber = sms.MobileNumber, Message = sms.Message };
-    HttpClientHelper.PostAsyn(url, data).Wait();
+    HttpClientHelper.PostAsync(url, data).Wait();
 }

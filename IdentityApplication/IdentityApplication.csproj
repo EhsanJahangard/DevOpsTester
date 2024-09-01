@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IdentityDomain\IdentityDomain.csproj" />
+    <ProjectReference Include="..\MessageBrokerService\MessageBrokerService.csproj" />
   </ItemGroup>
 
 </Project>

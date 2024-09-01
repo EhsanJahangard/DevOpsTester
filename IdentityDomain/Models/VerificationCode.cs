@@ -20,7 +20,7 @@ public class VerificationCode
     {
         Username = username;
         Code = code;
-        ExpireTime = expireTime.ToUniversalTime();
+        ExpireTime = expireTime;
         CreateDate = DateTime.Now;
         UpdateDate = DateTime.Now;
     }
@@ -28,7 +28,7 @@ public class VerificationCode
     public void Update(string code, DateTime expireTime)
     {
         Code = code;
-        ExpireTime = expireTime.ToUniversalTime();
+        ExpireTime = expireTime;
         UpdateDate = DateTime.Now;
     }
 }

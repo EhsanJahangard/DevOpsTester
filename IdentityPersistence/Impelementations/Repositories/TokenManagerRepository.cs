@@ -39,8 +39,8 @@ public class TokenManagerRepository : ITokenManagerRepository
             Subject = new ClaimsIdentity(claims),
             Issuer = _configuration["Jwt:Issuer"],
             Audience = _configuration["Jwt:Audience"],
-            IssuedAt = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc),
-            Expires = DateTime.UtcNow.AddMinutes(Convert.ToInt16(_configuration["Jwt:TokenTime"])),
+            IssuedAt = DateTime.Now,
+            Expires = DateTime.Now.AddMinutes(Convert.ToInt16(_configuration["Jwt:TokenTime"])),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:SignKey"])), SecurityAlgorithms.HmacSha512),
             EncryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:EncryptKey"])), SecurityAlgorithms.Aes256KW, SecurityAlgorithms.Aes256CbcHmacSha512),
         });

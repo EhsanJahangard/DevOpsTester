@@ -5,6 +5,7 @@ using IdentityApplication.DTOs.Login;
 using IdentityDomain.Models;
 using InfrastructureService;
 using MediatR;
+using MessageBrokerService;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -61,7 +62,8 @@ public class LoginCommandHandler : IRequestHandler<SendVerificationCodeCommand, 
 
             Sms sms = new Sms() { MobileNumber = "09356735245", Message = $"کد تایید اوستا {code}" };
 
-            //MessageBrokerHelper.Publish(JsonConvert.SerializeObject(sms), "sms");
+            //ارسال از طربق سرویس پیغام رسان
+            MessageBrokerHelper.Publish(JsonConvert.SerializeObject(sms), "sms");
 
             return new ResponseMessage("کد تایید ارسال شد");
         }
