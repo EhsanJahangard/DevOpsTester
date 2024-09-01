@@ -3,11 +3,6 @@ using MediatR;
 using NotificationApplication.Commands;
 using NotificationApplication.Contracts.Repositories;
 using NotificationApplication.Convertors;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotificationApplication.CommandHandlers;
 

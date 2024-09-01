@@ -4,12 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using NotificationApplication.Contracts.Repositories;
 using NotificationPersistence.Contexts;
 using NotificationPersistence.Impelementations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotificationPersistence;
 public static class PersistenceServiceRegistration

@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using NotificationApplication;
+using NotificationPersistence;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
