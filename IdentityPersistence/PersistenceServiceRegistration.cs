@@ -2,6 +2,7 @@
 using IdentityApplication.Contracts.UnitOfWork;
 using IdentityDomain.Models;
 using IdentityPersistence.Contexts;
+using IdentityPersistence.IdentityConfigs;
 using IdentityPersistence.Impelementations.Repositories;
 using IdentityPersistence.Impelementations.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -32,7 +33,11 @@ public static class PersistenceServiceRegistration
                  options.UseNpgsql(_connectionStringNgp, b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name))
         );
 
-        services.AddIdentity<User, Role>((IdentityOptions options) => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<IdentityDBContext>();
+        services.AddIdentity<User, Role>(
+            (IdentityOptions options) =>
+            options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<IdentityDBContext>()
+            .AddErrorDescriber<CustomIdentityError>();
 
 
         services.AddAuthentication(options =>

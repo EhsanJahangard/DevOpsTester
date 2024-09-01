@@ -20,7 +20,7 @@ public class SmsCommandHandler : IRequestHandler<SendSmsCommand, ResponseMessage
         try
         {
             request.Message += "\n لغو 11";
-            string url = $"https://panel.asanak.com/webservice/v1rest/sendsms?username=avesta1399&password=P!*r$Dg9EsYjEKIu&Source=98210004040&Message={request.Message}&destination={request.MobileNumber}";
+            string url = $"https://panel.asanak.com/webservice/v1rest/sendsms?username=aaaaaaa&password=000000000&Source=999999&Message={request.Message}&destination={request.MobileNumber}";
 
             HttpClient client = new HttpClient();
             HttpResponseMessage httpResponseMessage = await client.PostAsync(url, null);

@@ -16,7 +16,7 @@ Console.ReadLine();
 static void Consumer_Received(object? sender, BasicDeliverEventArgs e)
 {
     string message = Encoding.UTF8.GetString(e.Body.ToArray());
-
+    
     Sms sms = JsonConvert.DeserializeObject<Sms>(message);
 
     string url = "https://localhost:44337/api/sms/send";
