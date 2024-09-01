@@ -59,23 +59,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging", "Messaging", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Email", "Email", "{69887ECB-B069-46DA-B8EF-92D1A0F70584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageBrokerService", "MessageBrokerService\MessageBrokerService.csproj", "{156324B7-96BF-4BF5-B219-09CFC69010A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBrokerService", "MessageBrokerService\MessageBrokerService.csproj", "{156324B7-96BF-4BF5-B219-09CFC69010A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NotificationService", "NotificationService", "{F00124AD-0C9B-4D78-94C4-C35E860501D0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5E9528A3-C0EF-4162-BEE4-087B93ABC823}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationDomain", "NotificationDomain\NotificationDomain.csproj", "{ED9CBE32-F9E4-49C3-90F3-DF723499CEC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationDomain", "NotificationDomain\NotificationDomain.csproj", "{ED9CBE32-F9E4-49C3-90F3-DF723499CEC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationApplication", "NotificationApplication\NotificationApplication.csproj", "{6E77E088-AC66-48DA-959F-54D4793C4173}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationApplication", "NotificationApplication\NotificationApplication.csproj", "{6E77E088-AC66-48DA-959F-54D4793C4173}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D17895FB-2602-4D6F-B9D8-56674DC40471}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationPersistence", "NotificationPersistence\NotificationPersistence.csproj", "{51608BE1-3738-4C75-A242-9E03DD56CE1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationPersistence", "NotificationPersistence\NotificationPersistence.csproj", "{51608BE1-3738-4C75-A242-9E03DD56CE1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{E056882B-2FFF-4ECE-A329-B6BAF20C260B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationEndPoint", "NotificationEndPoint\NotificationEndPoint.csproj", "{8F8FE679-515A-4EC4-99E1-41262724C289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationEndPoint", "NotificationEndPoint\NotificationEndPoint.csproj", "{8F8FE679-515A-4EC4-99E1-41262724C289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
