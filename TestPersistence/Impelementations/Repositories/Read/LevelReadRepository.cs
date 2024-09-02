@@ -1,10 +1,6 @@
 ﻿using Dapper;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.DTOs.Level;
 using TestDomain.Models;
@@ -13,8 +9,11 @@ namespace TestPersistence.Impelementations.Repositories.Read
 {
     public class LevelReadRepository : ReadOnlyRepository, ILevelReadRepository
     {
-        public LevelReadRepository(IConfiguration configuration) : base(configuration)
+        private readonly IDistributedCache _redisCache;
+        public LevelReadRepository(IConfiguration configuration,IDistributedCache redisCache) : base(configuration)
         {
+            _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
+
         }
         public void Dispose()
         {
@@ -33,6 +32,11 @@ namespace TestPersistence.Impelementations.Repositories.Read
 
         public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
         {
+            //var basket = await _redisCache.GetStringAsync(LevelId.ToString()) ;
+            //await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(basket));
+            //            await _redisCache.RemoveAsync(userName);
+
+
             string query = @"
                             SELECT * from Levels
                               where Id=@Id

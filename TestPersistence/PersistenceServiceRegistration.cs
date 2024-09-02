@@ -37,6 +37,12 @@ public static class PersistenceServiceRegistration
 
         services.AddScoped<ILevelReadRepository, LevelReadRepository>();
         #endregion
+        #region Redis
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
+        });
+        #endregion
         #region UnitOfWorkRegister
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
