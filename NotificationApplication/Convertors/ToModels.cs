@@ -7,6 +7,15 @@ public static class ToModels
 {
     public static Sms ToModel(this SendSmsCommand command, string sendResultCode)
     {
-        return new Sms(command.MobileNumber, command.Message, sendResultCode);
+        var sms = new Sms()
+        {
+          
+            MobileNumber = command.MobileNumber,
+            Message = command.Message,
+            SendResultCode = sendResultCode,
+            CreatorDate = DateTime.Now,
+
+        };
+        return sms;
     }
 }

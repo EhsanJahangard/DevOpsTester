@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestPersistence.Contexts;
 using TestApplication.Contracts.Repositories.Write;
-using static Dapper.SqlMapper;
+using TestPersistence.Contexts;
 
 namespace TestPersistence.Impelementations.Repositories.Write;
 

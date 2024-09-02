@@ -9,9 +9,9 @@ namespace NotificationApplication.CommandHandlers;
 public class SmsCommandHandler : IRequestHandler<SendSmsCommand, ResponseMessage>
 {
     
-    private readonly IMongoRepository<NotificationDomain.Models.Sms> _smsRepository;
+    private readonly ISmsRepository _smsRepository;
 
-    public SmsCommandHandler(IMongoRepository<NotificationDomain.Models.Sms> smsRepository)
+    public SmsCommandHandler(ISmsRepository smsRepository)
     {
         _smsRepository = smsRepository;
     }
@@ -20,7 +20,7 @@ public class SmsCommandHandler : IRequestHandler<SendSmsCommand, ResponseMessage
     {
         try
         {
-            
+          
             request.Message += "\n لغو 11";
             string url = $"https://panel.asanak.com/webservice/v1rest/sendsms?username=aaaaaaa&password=000000000&Source=999999&Message={request.Message}&destination={request.MobileNumber}";
 
