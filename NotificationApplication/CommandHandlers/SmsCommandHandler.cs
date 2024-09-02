@@ -8,17 +8,19 @@ namespace NotificationApplication.CommandHandlers;
 
 public class SmsCommandHandler : IRequestHandler<SendSmsCommand, ResponseMessage>
 {
-    private readonly IWriteOnlyRepository<NotificationDomain.Models.Sms> _writeOnlyRepository;
+    
+    private readonly IMongoRepository<NotificationDomain.Models.Sms> _smsRepository;
 
-    public SmsCommandHandler(IWriteOnlyRepository<NotificationDomain.Models.Sms> writeOnlyRepository)
+    public SmsCommandHandler(IMongoRepository<NotificationDomain.Models.Sms> smsRepository)
     {
-        _writeOnlyRepository = writeOnlyRepository;
+        _smsRepository = smsRepository;
     }
 
     public async Task<ResponseMessage> Handle(SendSmsCommand request, CancellationToken cancellationToken)
     {
         try
         {
+            
             request.Message += "\n لغو 11";
             string url = $"https://panel.asanak.com/webservice/v1rest/sendsms?username=aaaaaaa&password=000000000&Source=999999&Message={request.Message}&destination={request.MobileNumber}";
 
@@ -29,8 +31,8 @@ public class SmsCommandHandler : IRequestHandler<SendSmsCommand, ResponseMessage
             sendResultCode = sendResultCode.Remove(0, 1);
             sendResultCode = sendResultCode.Remove(sendResultCode.Length - 1, 1);
 
-            await _writeOnlyRepository.AddAsync(request.ToModel(sendResultCode));
-            await _writeOnlyRepository.SaveChangesAsync();
+            await _smsRepository.AddAsync(request.ToModel(sendResultCode));
+
 
             return new ResponseMessage();
         }
