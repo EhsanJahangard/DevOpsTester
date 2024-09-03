@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -40,8 +41,9 @@ public static class PersistenceServiceRegistration
         #region Redis
         services.AddStackExchangeRedisCache(options =>
         {
-            options.Configuration = builder.Configuration.GetValue<string>("CacheSettings:ConnectionString");
+            options.Configuration =configuration.GetValue<string>("CacheSettings:ConnectionString");
         });
+        //services.AddScoped<IDistributedCache, DistributedCache>();
         #endregion
         #region UnitOfWorkRegister
 

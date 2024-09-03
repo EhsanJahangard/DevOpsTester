@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.DTOs.Level;
 using TestDomain.Models;
@@ -10,7 +11,7 @@ namespace TestPersistence.Impelementations.Repositories.Read
     public class LevelReadRepository : ReadOnlyRepository, ILevelReadRepository
     {
         private readonly IDistributedCache _redisCache;
-        public LevelReadRepository(IConfiguration configuration,IDistributedCache redisCache) : base(configuration)
+        public LevelReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
         {
             _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -24,35 +25,62 @@ namespace TestPersistence.Impelementations.Repositories.Read
         {
             return null;
         }
-
-        public async Task<List<Level>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<GetLevelListDto>> GetAll(CancellationToken cancellationToken)
+        
         {
-            return null;
+            var levelAll = await _redisCache.GetStringAsync("levelgetall");
+
+            if (String.IsNullOrEmpty(levelAll))
+            {
+                string query = @"
+                            SELECT * from Levels
+                            ";
+
+              
+
+                var result = await Connection.QueryAsync<GetLevelListDto>(query);
+
+                await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
+
+
+                return result.ToList();
+            }
+            return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
         }
 
         public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
         {
-            //var basket = await _redisCache.GetStringAsync(LevelId.ToString()) ;
-            //await _redisCache.SetStringAsync(basket.UserName, JsonConvert.SerializeObject(basket));
-            //            await _redisCache.RemoveAsync(userName);
+           
 
+            var levelAll = await _redisCache.GetStringAsync("levelgetall");
 
-            string query = @"
+            if (String.IsNullOrEmpty(levelAll))
+            {
+                string query = @"
                             SELECT * from Levels
                               where Id=@Id
                             ";
 
-            DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("@Id", LevelId);
+                DynamicParameters dynamicParameters = new DynamicParameters();
+                dynamicParameters.Add("@Id", LevelId);
 
-            var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
+                var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
 
-            return result.ToList();
+                await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
+
+
+                return result.ToList();
+            }
+            return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
+
+           
         }
 
         public Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
+
+       
     }
 }

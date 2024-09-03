@@ -5,4 +5,5 @@ namespace TestApplication.Contracts.Repositories.Read;
 public interface ILevelReadRepository 
 {
     Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken);
+    Task<List<GetLevelListDto>> GetAll( CancellationToken cancellationToken);
 }
