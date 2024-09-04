@@ -39,10 +39,21 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ILevelReadRepository, LevelReadRepository>();
         #endregion
         #region Redis
+        //services.AddStackExchangeRedisCache(options =>
+        //{
+        //    options.Configuration =configuration.GetValue<string>("CacheSettings:ConnectionString");
+        //});
         services.AddStackExchangeRedisCache(options =>
         {
-            options.Configuration =configuration.GetValue<string>("CacheSettings:ConnectionString");
+            options.Configuration = configuration.GetValue<string>("CacheSettings:ConnectionString");
+            options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions()
+            {
+                AbortOnConnectFail = true,
+                EndPoints = { options.Configuration }
+            };
+            options.InstanceName = "DevOps_";
         });
+
         //services.AddScoped<IDistributedCache, DistributedCache>();
         #endregion
         #region UnitOfWorkRegister

@@ -2,7 +2,7 @@
 
 namespace InfrastructureService
 {
-    public class ResponseMessage 
+    public class ResponseMessage
     {
         public ResponseMessage()
         {

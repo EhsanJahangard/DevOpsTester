@@ -1,10 +1,12 @@
 ﻿using Dapper;
+using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json;
+using System.Text.Json;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.DTOs.Level;
 using TestDomain.Models;
+
 
 namespace TestPersistence.Impelementations.Repositories.Read
 {
@@ -26,54 +28,55 @@ namespace TestPersistence.Impelementations.Repositories.Read
             return null;
         }
         public async Task<List<GetLevelListDto>> GetAll(CancellationToken cancellationToken)
-        
         {
-            var levelAll = await _redisCache.GetStringAsync("levelgetall");
+            var cacheKey = "levelgetall";
+            
+            var cacheOptions = new DistributedCacheEntryOptions()
+               .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
+               .SetSlidingExpiration(TimeSpan.FromMinutes(10));
 
-            if (String.IsNullOrEmpty(levelAll))
-            {
-                string query = @"
-                            SELECT * from Levels
-                            ";
+            var res = await _redisCache.GetOrSetAsync(cacheKey,
+           async () =>
+           {
+               // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
+               string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as LevelId,[UserCreate],[Title] FROM [dbo].[Levels]";
+               var result = await Connection.QueryAsync<GetLevelListDto>(query);
 
-              
-
-                var result = await Connection.QueryAsync<GetLevelListDto>(query);
-
-                await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
+               return result.ToList();
+           }, cacheOptions)!;
 
 
-                return result.ToList();
-            }
-            return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
+            return res.ToList();
+
+
         }
 
         public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
         {
-           
-
-            var levelAll = await _redisCache.GetStringAsync("levelgetall");
-
-            if (String.IsNullOrEmpty(levelAll))
-            {
-                string query = @"
-                            SELECT * from Levels
-                              where Id=@Id
-                            ";
-
-                DynamicParameters dynamicParameters = new DynamicParameters();
-                dynamicParameters.Add("@Id", LevelId);
-
-                var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
-
-                await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
 
 
-                return result.ToList();
-            }
-            return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
+            //var levelAll = await _redisCache.GetStringAsync("levelgetall");
 
-           
+            //if (String.IsNullOrEmpty(levelAll))
+            //{
+            //    string query = @"
+            //                SELECT * from Levels
+            //                  where Id=@Id
+            //                ";
+
+            //    DynamicParameters dynamicParameters = new DynamicParameters();
+            //    dynamicParameters.Add("@Id", LevelId);
+
+            //    var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
+
+            //    await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
+
+
+            //    return result.ToList();
+            //}
+            //return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
+            return null;
+
         }
 
         public Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken)
@@ -81,6 +84,6 @@ namespace TestPersistence.Impelementations.Repositories.Read
             throw new NotImplementedException();
         }
 
-       
+
     }
 }
