@@ -1,17 +1,12 @@
 ﻿using InfrastructureService;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.CQRS.Level.Queries;
 
 namespace TestApplication.CQRS.Level.QueryHandlers;
 
 public class GetAllLevelQueryHandler : IRequestHandler<GetAllLevelQuery, ResponseMessage>//,
-    //IRequestHandler<GetCargoCategoryByIdQuery, ResponseMessage>
+    //IRequestHandler<GetPersonByIdQuery, ResponseMessage>
 {
     private ILevelReadRepository _levelReadRepository;
 
@@ -37,16 +32,16 @@ public class GetAllLevelQueryHandler : IRequestHandler<GetAllLevelQuery, Respons
         }
     }
 
-    //public async Task<ResponseMessage> Handle(GetCargoCategoryByIdQuery request, CancellationToken cancellationToken)
+    //public async Task<ResponseMessage> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
     //{
     //    try
     //    {
-    //        var result = await _CargoCategoryReadOnlyRepository.GetByIdAsync(request.Id);
+    //        var result = await _levelReadRepository.GetByIdAsync(request.Id);
 
     //        if (result != null)
     //            return new ResponseMessage(result);
 
-    //        return new ResponseMessage("طبقه بندی کالای مورد نظر وجود ندارد");
+    //        return new ResponseMessage("سطحی مورد نظر وجود ندارد");
     //    }
     //    catch (Exception ex)
     //    {

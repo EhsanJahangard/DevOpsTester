@@ -2,88 +2,67 @@
 using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
-using System.Text.Json;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.DTOs.Level;
 using TestDomain.Models;
 
 
-namespace TestPersistence.Impelementations.Repositories.Read
+namespace TestPersistence.Impelementations.Repositories.Read;
+
+public class LevelReadRepository : ReadOnlyRepository, ILevelReadRepository
 {
-    public class LevelReadRepository : ReadOnlyRepository, ILevelReadRepository
+    private readonly IDistributedCache _redisCache;
+    public LevelReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
-        private readonly IDistributedCache _redisCache;
-        public LevelReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
-        {
-            _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
+        _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
-        }
-        public void Dispose()
-        {
+    }
+    public void Dispose()
+    {
 
-        }
+    }
 
-        public async Task<Level> Get(Guid id, CancellationToken cancellationToken)
-        {
-            return null;
-        }
-        public async Task<List<GetLevelListDto>> GetAll(CancellationToken cancellationToken)
-        {
-            var cacheKey = "levelgetall";
-            
-            var cacheOptions = new DistributedCacheEntryOptions()
-               .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
-               .SetSlidingExpiration(TimeSpan.FromMinutes(10));
+    public async Task<Level> Get(Guid id, CancellationToken cancellationToken)
+    {
+        return null;
+    }
+    public async Task<List<GetLevelListDto>> GetAll(CancellationToken cancellationToken)
+    {
+        var cacheKey = "levelgetall";
+        
+        var cacheOptions = new DistributedCacheEntryOptions()
+           .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
+           .SetSlidingExpiration(TimeSpan.FromMinutes(10));
 
-            var res = await _redisCache.GetOrSetAsync(cacheKey,
-           async () =>
-           {
-               // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-               string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as LevelId,[UserCreate],[Title] FROM [dbo].[Levels]";
-               var result = await Connection.QueryAsync<GetLevelListDto>(query);
+        var res = await _redisCache.GetOrSetAsync(cacheKey,
+       async () =>
+       {
+           // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
+           string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as LevelId,[UserCreate],[Title] FROM [dbo].[Levels]";
+           var result = await Connection.QueryAsync<GetLevelListDto>(query);
 
-               return result.ToList();
-           }, cacheOptions)!;
+           return result.ToList();
+       }, cacheOptions)!;
 
 
-            return res.ToList();
-
-
-        }
-
-        public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
-        {
-
-
-            //var levelAll = await _redisCache.GetStringAsync("levelgetall");
-
-            //if (String.IsNullOrEmpty(levelAll))
-            //{
-            //    string query = @"
-            //                SELECT * from Levels
-            //                  where Id=@Id
-            //                ";
-
-            //    DynamicParameters dynamicParameters = new DynamicParameters();
-            //    dynamicParameters.Add("@Id", LevelId);
-
-            //    var result = await Connection.QueryAsync<GetLevelListDto>(query, dynamicParameters);
-
-            //    await _redisCache.SetStringAsync("levelgetall", JsonConvert.SerializeObject(result));
-
-
-            //    return result.ToList();
-            //}
-            //return JsonConvert.DeserializeObject<List<GetLevelListDto>>(levelAll).ToList();
-            return null;
-
-        }
-
-        public Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        return res.ToList();
 
 
     }
+
+    public async Task<IEnumerable<GetLevelListDto>> GetAllAsync(Guid LevelId)
+    {
+
+
+      
+        return null;
+
+    }
+
+    public Task<GetLevelListDto> GetByTitle(string title, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+
 }

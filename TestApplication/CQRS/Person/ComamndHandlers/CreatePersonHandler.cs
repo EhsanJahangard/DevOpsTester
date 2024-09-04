@@ -1,29 +1,23 @@
 ﻿using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.Contracts.Repositories.Write;
 using TestApplication.Contracts.UnitOfWork;
 using TestApplication.Convertors.Models;
 using TestApplication.CQRS.Level.Commands;
-using TestDomain.Models;
 namespace TestApplication.CQRS.Level.ComamndHandlers
 {
     public class CreatePersonHandler : IRequestHandler<CreatePersonCommand, DTOs.Common.BaseResponseDto>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILevelReadRepository _levelRepositoryRead;
-        private readonly IWriteOnlyRepository<TestDomain.Models.Level> _levelRepositoryWrite;
+        private readonly IPersonReadRepository _personRepositoryRead;
+        private readonly IWriteOnlyRepository<TestDomain.Models.Person> _personRepositoryWrite;
         private readonly IMapper _mapper;
-        public CreatePersonHandler(IUnitOfWork unitOfWork, ILevelReadRepository levelRepositoryRead, IWriteOnlyRepository<TestDomain.Models.Level> levelRepositoryWrite ,  IMapper mapper)
+        public CreatePersonHandler(IUnitOfWork unitOfWork, IPersonReadRepository personRepositoryRead, IWriteOnlyRepository<TestDomain.Models.Person> personRepositoryWrite ,  IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _levelRepositoryRead = levelRepositoryRead;
-            _levelRepositoryWrite = levelRepositoryWrite;
+            _personRepositoryRead = personRepositoryRead;
+            _personRepositoryWrite = personRepositoryWrite;
             _mapper = mapper;
         }
         public async Task<DTOs.Common.BaseResponseDto> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
@@ -31,12 +25,12 @@ namespace TestApplication.CQRS.Level.ComamndHandlers
             try
             {
 
-                var level = request.ToModel();
-                level.UserUpdate = "-";
-                level.UserCreate = "--";
-                await _levelRepositoryWrite.AddAsync(level);
+                var person = request.ToModel();
+                person.UserUpdate = "-";
+                person.UserCreate = "--";
+                await _personRepositoryWrite.AddAsync(person);
                 await _unitOfWork.Save(cancellationToken);
-                return new DTOs.Common.BaseResponseDto { Data = level };
+                return new DTOs.Common.BaseResponseDto { Data = person };
             }
             catch (Exception ex)
             {
