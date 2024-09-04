@@ -1,29 +1,30 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TestApplication.CQRS.Level.Commands;
-using TestApplication.CQRS.Level.Queries;
+using TestApplication.CQRS.Question.Commands;
+using TestApplication.CQRS.Question.Queries;
 using TestApplication.DTOs.Common;
 
 namespace TestEndPoint.Controllers;
+
 [Route("api/[controller]")]
 [ApiController]
-public class PersonController : ControllerBase
+public class QuestionController : ControllerBase
 {
-   
+
     private readonly IMediator _mediator;
 
-    public PersonController(IMediator mediator)
+    public QuestionController(IMediator mediator)
     {
         _mediator = mediator;
     }
     [HttpPost("create")]
-    public async Task<ActionResult<BaseResponseDto>> Create(CreatePersonCommand request, CancellationToken cancellationToken)
+    public async Task<ActionResult<BaseResponseDto>> Create(CreateQuestionCommand request, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
-    [HttpPost("person-getall")]
-    public async Task<ActionResult<BaseResponseDto>> GetAll(GetAllPersonQuery request, CancellationToken cancellationToken)
+    [HttpPost("Question-getall")]
+    public async Task<ActionResult<BaseResponseDto>> GetAll(GetAllQuestionQuery request, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);

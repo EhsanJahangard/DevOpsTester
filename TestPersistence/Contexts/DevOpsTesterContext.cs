@@ -35,6 +35,7 @@ public class DevOpsTesterContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new PersonConfig());
         modelBuilder.ApplyConfiguration(new LevelConfig());
+        modelBuilder.ApplyConfiguration(new QuestionConfig());
        
 
         //modelBuilder.SharedTypeEntity<Dictionary<string, object>>("PermissionRole", builder =>

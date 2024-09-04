@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TestDomain.Models;
 
-namespace TestDomain.Models
+public class Question : Common.BaseEntity<Guid>
 {
-    public class Question : Common.BaseEntity<Guid>
+    public string Letter { get; set; }
+    public string Answer { get; set; }
+    public Question(string letter, string answer)
     {
+        Letter = letter;
+        Answer = answer;
     }
 }
