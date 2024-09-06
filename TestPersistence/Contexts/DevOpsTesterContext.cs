@@ -3,6 +3,7 @@ using System.Data;
 using TestDomain.Common;
 using TestDomain.Models;
 using TestPersistence.Configs;
+using TestPersistence.Seed;
 
 namespace TestPersistence.Contexts;
 
@@ -17,44 +18,28 @@ public class DevOpsTesterContext : DbContext
     public DbSet<Person> People { get; set; }
     public DbSet<Skill> Skills { get; set; }
     public DbSet<Level> Levels { get; set; }
-    public DbSet<QuestionOption> QuestionOptions { get; set; }
-    public DbSet<QuestionPhoto> QuestionPhotos { get; set; }
     public DbSet<QuestionType> QuestionTypes { get; set; }
     public DbSet<Question> Questions { get; set; }
+    public DbSet<QuestionPhoto> QuestionPhotos { get; set; }
+    public DbSet<QuestionOption> QuestionOptions { get; set; }
     public DbSet<PersonSkill> PersonSkills { get; set; }
-    public DbSet<Master> Master { get; set ; }
+    public DbSet<Master> Masters { get; set ; }
     public DbSet<TestQuestion> TestQuestions { get; set; }
     public DbSet<Test> Tests { get; set; }
     public DbSet<TestResult> TestResults { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        base.OnModelCreating(builder);
         Config(builder);
+        builder.Seed();
+      
     }
 
     private static void Config(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new PersonConfig());
-        modelBuilder.ApplyConfiguration(new LevelConfig());
-        modelBuilder.ApplyConfiguration(new QuestionConfig());
-        modelBuilder.ApplyConfiguration(new SkillConfig());
-       
-
-        //modelBuilder.SharedTypeEntity<Dictionary<string, object>>("PermissionRole", builder =>
-        //{
-        //    builder.HasKey("PermissionsId", "RolesId");
-
-        //    // Add the UserId column
-        //    builder.Property<Guid>("UserId")
-        //           .IsRequired();
-
-        //    // Establish the foreign key relationship with the Users table
-        //    builder.HasOne<User>()
-        //           .WithMany()
-        //           .HasForeignKey("UserId");
-
-        //    builder.HasKey("PermissionsId", "RolesId", "UserId");
-        //});
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(PersonConfig).Assembly);
+        
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

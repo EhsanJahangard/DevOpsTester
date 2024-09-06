@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestPersistence.Contexts;
 
@@ -11,9 +12,11 @@ using TestPersistence.Contexts;
 namespace TestPersistence.Migrations
 {
     [DbContext(typeof(DevOpsTesterContext))]
-    partial class DevOpsTesterContextModelSnapshot : ModelSnapshot
+    [Migration("20240906162354_approve_Seed4")]
+    partial class approve_Seed4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

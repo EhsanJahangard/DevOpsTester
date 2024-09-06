@@ -8,4 +8,9 @@ public class Level : Common.BaseEntityTitle<Guid>
     {
         Title = title;
     }
+    public Level(string id, string title)
+    {
+        Title = title;
+        Id = Guid.Parse(id);
+    }
 }

@@ -7,7 +7,7 @@ public static class QuestionModelConvertor
 {
     public static Question ToModel(this CreateQuestionCommand command)
     {
-        return new Question(command.Letter, command.Answer);
+        return new Question(command.Letter, command.Answer, command.LevelId, command.QuestionTypeId);
     }
 
 }

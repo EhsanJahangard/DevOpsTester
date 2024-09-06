@@ -8,4 +8,9 @@ public class QuestionType : Common.BaseEntityTitle<Guid>
     {
         Title = title;
     }
+    public QuestionType(string id, string title)
+    {
+        Title = title;
+        Id = Guid.Parse(id);
+    }
 }

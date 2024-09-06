@@ -7,4 +7,6 @@ public class CreateQuestionCommand : IRequest<BaseResponseDto>
 {
     public string Letter { get; set; }
     public string Answer { get; set; }
+    public Guid LevelId { get; set; }
+    public Guid QuestionTypeId { get; set; }
 }

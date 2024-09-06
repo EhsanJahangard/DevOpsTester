@@ -58,6 +58,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         #endregion
+        
     }
    
 

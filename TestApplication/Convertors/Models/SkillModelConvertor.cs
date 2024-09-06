@@ -7,7 +7,7 @@ public static class SkillModelConvertor
 {
     public static Skill ToModel(this CreateSkillCommand command)
     {
-        return new Skill(command.Title);
+        return new Skill(command.Title,command.SkillType);
     }
 
 }

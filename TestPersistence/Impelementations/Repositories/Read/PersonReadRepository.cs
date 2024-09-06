@@ -38,7 +38,7 @@ public class PersonReadRepository : ReadOnlyRepository, IPersonReadRepository
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as PersonId,[Name],[Family],[Age],[Mobile] FROM [dbo].[People]";
+                               string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as PersonId,[Name],[Family],[DateBirth],[Mobile] FROM [dbo].[People]";
                                var result = await Connection.QueryAsync<GetPersonListDto>(query);
 
                                return result.ToList();

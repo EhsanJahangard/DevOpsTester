@@ -6,4 +6,5 @@ namespace TestApplication.CQRS.Skill.Commands;
 public class CreateSkillCommand : IRequest<BaseResponseDto>
 {
     public string Title { get; set; }
+    public string SkillType { get; set; }
 }

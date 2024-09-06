@@ -16,4 +16,13 @@ public class Person : Common.BaseEntity<Guid>
         DateBirth = dateBirth;
         Mobile = mobile;
     }
+    public Person(string id,string name, string family, DateTime dateBirth, string mobile)
+    {
+        Id = Guid.Parse(id);
+        Name = name;
+        Family = family;
+        DateBirth = dateBirth;
+        Mobile = mobile;
+       
+    }
 }
