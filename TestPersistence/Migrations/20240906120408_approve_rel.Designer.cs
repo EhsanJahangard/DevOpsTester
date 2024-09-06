@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestPersistence.Contexts;
 
@@ -11,9 +12,11 @@ using TestPersistence.Contexts;
 namespace TestPersistence.Migrations
 {
     [DbContext(typeof(DevOpsTesterContext))]
-    partial class DevOpsTesterContextModelSnapshot : ModelSnapshot
+    [Migration("20240906120408_approve_rel")]
+    partial class approve_rel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,63 +71,6 @@ namespace TestPersistence.Migrations
                     b.ToTable("Levels");
                 });
 
-            modelBuilder.Entity("TestDomain.Models.Master", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateBirth")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateCreate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Degree")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Family")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mobile")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Photo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TitleBio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserCreate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserUpdate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte?>("Years_Experience")
-                        .HasColumnType("tinyint");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Master");
-                });
-
             modelBuilder.Entity("TestDomain.Models.Person", b =>
                 {
                     b.Property<Guid>("Id")
@@ -132,10 +78,7 @@ namespace TestPersistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
-                    b.Property<string>("CodeMeli")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateBirth")
+                    b.Property<DateTime>("Age")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateCreate")
@@ -158,9 +101,6 @@ namespace TestPersistence.Migrations
                         .IsRequired()
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
-
-                    b.Property<string>("Photo")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserCreate")
                         .IsRequired()
@@ -442,11 +382,8 @@ namespace TestPersistence.Migrations
                     b.Property<DateTime?>("ExpirtionTest")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte?>("LengthMinuteTest")
-                        .HasColumnType("tinyint");
-
-                    b.Property<Guid>("MasterId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<TimeOnly>("LengthTest")
+                        .HasColumnType("time");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -465,8 +402,6 @@ namespace TestPersistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MasterId");
 
                     b.ToTable("Tests");
                 });
@@ -515,27 +450,8 @@ namespace TestPersistence.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateExam")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DateUpdate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("Grade")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("nvarchar(5)");
-
-                    b.Property<Guid>("PersonId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TestId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserCreate")
                         .IsRequired()
@@ -546,10 +462,6 @@ namespace TestPersistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.HasIndex("TestId");
 
                     b.ToTable("TestResults");
                 });
@@ -624,17 +536,6 @@ namespace TestPersistence.Migrations
                     b.Navigation("Question");
                 });
 
-            modelBuilder.Entity("TestDomain.Models.Test", b =>
-                {
-                    b.HasOne("TestDomain.Models.Master", "Master")
-                        .WithMany("Tests")
-                        .HasForeignKey("MasterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Master");
-                });
-
             modelBuilder.Entity("TestDomain.Models.TestQuestion", b =>
                 {
                     b.HasOne("TestDomain.Models.Question", "Question")
@@ -654,35 +555,11 @@ namespace TestPersistence.Migrations
                     b.Navigation("Test");
                 });
 
-            modelBuilder.Entity("TestDomain.Models.TestResult", b =>
-                {
-                    b.HasOne("TestDomain.Models.Person", "People")
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TestDomain.Models.Test", "Test")
-                        .WithMany()
-                        .HasForeignKey("TestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("People");
-
-                    b.Navigation("Test");
-                });
-
             modelBuilder.Entity("TestDomain.Models.Level", b =>
                 {
                     b.Navigation("PersonSkills");
 
                     b.Navigation("Questions");
-                });
-
-            modelBuilder.Entity("TestDomain.Models.Master", b =>
-                {
-                    b.Navigation("Tests");
                 });
 
             modelBuilder.Entity("TestDomain.Models.Person", b =>

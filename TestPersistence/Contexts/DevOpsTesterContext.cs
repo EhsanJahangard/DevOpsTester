@@ -13,18 +13,19 @@ public class DevOpsTesterContext : DbContext
     {
 
     }
-
-    public DbSet<TestResult> TestResults { get; set; }
-    public DbSet<Test> Tests { get; set; }
-    public DbSet<Question> Questions { get; set; }
+    public DbSet<Photo> Photos { get; set; }
+    public DbSet<Person> People { get; set; }
+    public DbSet<Skill> Skills { get; set; }
+    public DbSet<Level> Levels { get; set; }
     public DbSet<QuestionOption> QuestionOptions { get; set; }
     public DbSet<QuestionPhoto> QuestionPhotos { get; set; }
     public DbSet<QuestionType> QuestionTypes { get; set; }
-    public DbSet<Photo> Photos { get; set; }
-    public DbSet<Person> People { get; set; }
+    public DbSet<Question> Questions { get; set; }
     public DbSet<PersonSkill> PersonSkills { get; set; }
-    public DbSet<Level> Levels { get; set; }
-    public DbSet<Skill> Skills { get; set; }
+    public DbSet<Master> Master { get; set ; }
+    public DbSet<TestQuestion> TestQuestions { get; set; }
+    public DbSet<Test> Tests { get; set; }
+    public DbSet<TestResult> TestResults { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
