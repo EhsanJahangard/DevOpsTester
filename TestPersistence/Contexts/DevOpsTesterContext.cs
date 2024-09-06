@@ -17,12 +17,12 @@ public class DevOpsTesterContext : DbContext
     public DbSet<TestResult> TestResults { get; set; }
     public DbSet<Test> Tests { get; set; }
     public DbSet<Question> Questions { get; set; }
-    public DbSet<QuestionOptions> QuestionOptions { get; set; }
+    public DbSet<QuestionOption> QuestionOptions { get; set; }
     public DbSet<QuestionPhoto> QuestionPhotos { get; set; }
     public DbSet<QuestionType> QuestionTypes { get; set; }
     public DbSet<Photo> Photos { get; set; }
     public DbSet<Person> People { get; set; }
-    public DbSet<PersonSkills> PersonSkills { get; set; }
+    public DbSet<PersonSkill> PersonSkills { get; set; }
     public DbSet<Level> Levels { get; set; }
     public DbSet<Skill> Skills { get; set; }
 
@@ -36,6 +36,7 @@ public class DevOpsTesterContext : DbContext
         modelBuilder.ApplyConfiguration(new PersonConfig());
         modelBuilder.ApplyConfiguration(new LevelConfig());
         modelBuilder.ApplyConfiguration(new QuestionConfig());
+        modelBuilder.ApplyConfiguration(new SkillConfig());
        
 
         //modelBuilder.SharedTypeEntity<Dictionary<string, object>>("PermissionRole", builder =>

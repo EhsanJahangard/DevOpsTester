@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace TestDomain.Models;
 
-namespace TestDomain.Models
+public class QuestionPhoto : Common.BaseEntity<Guid>
 {
-    public class QuestionPhoto : Common.BaseEntity<Guid>
-    {
-    }
 }

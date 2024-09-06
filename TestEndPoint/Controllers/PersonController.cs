@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using TestApplication.CQRS.Level.Commands;
-using TestApplication.CQRS.Level.Queries;
+using TestApplication.CQRS.Person.Commands;
+using TestApplication.CQRS.Person.Queries;
 using TestApplication.DTOs.Common;
 
 namespace TestEndPoint.Controllers;

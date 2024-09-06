@@ -1,9 +1,9 @@
 ﻿using InfrastructureService;
 using MediatR;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.CQRS.Level.Queries;
+using TestApplication.CQRS.Person.Queries;
 
-namespace TestApplication.CQRS.Level.QueryHandlers;
+namespace TestApplication.CQRS.Person.QueryHandlers;
 
 public class GetAllPersonQueryHandler : IRequestHandler<GetAllPersonQuery, ResponseMessage>//,
     //IRequestHandler<GetPersonByIdQuery, ResponseMessage>

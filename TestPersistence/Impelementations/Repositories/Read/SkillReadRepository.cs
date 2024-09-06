@@ -3,16 +3,16 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.Question;
+using TestApplication.DTOs.Skill;
 using TestDomain.Models;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class QuestionReadRepository : ReadOnlyRepository, IQuestionReadRepository
+public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public QuestionReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public SkillReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -28,19 +28,19 @@ public class QuestionReadRepository : ReadOnlyRepository, IQuestionReadRepositor
     }
 
 
-    public Task<GetQuestionListDto> GetById(string Id, CancellationToken cancellationToken)
+    public Task<GetSkillListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetQuestionListDto> GetByLetter(string Text, CancellationToken cancellationToken)
+    public Task<GetSkillListDto> GetByLetter(string Text, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<List<GetQuestionListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "questiongetall";
+        var cacheKey = "Skillgetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -50,8 +50,8 @@ public class QuestionReadRepository : ReadOnlyRepository, IQuestionReadRepositor
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as QuestionId,[Letter],[Answer] FROM [dbo].[Questions]";
-                               var result = await Connection.QueryAsync<GetQuestionListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as SkillId,[Title] FROM [dbo].[Skills]";
+                               var result = await Connection.QueryAsync<GetSkillListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;

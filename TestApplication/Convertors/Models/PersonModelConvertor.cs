@@ -1,4 +1,4 @@
-﻿using TestApplication.CQRS.Level.Commands;
+﻿using TestApplication.CQRS.Person.Commands;
 using TestDomain.Models;
 
 namespace TestApplication.Convertors.Models;

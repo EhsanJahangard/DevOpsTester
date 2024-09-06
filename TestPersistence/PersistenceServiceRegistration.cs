@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using TestApplication.Contracts.Repositories.Read;
 using TestApplication.Contracts.Repositories.Write;
 using TestApplication.Contracts.UnitOfWork;
@@ -39,6 +33,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ILevelReadRepository, LevelReadRepository>();
         services.AddScoped<IPersonReadRepository, PersonReadRepository>();
         services.AddScoped<IQuestionReadRepository, QuestionReadRepository>();
+        services.AddScoped<ISkillReadRepository, SkillReadRepository>();
         #endregion
         #region Redis
         //services.AddStackExchangeRedisCache(options =>

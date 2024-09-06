@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using TestApplication.DTOs.Common;
 
-namespace TestApplication.CQRS.Level.Commands;
+namespace TestApplication.CQRS.Person.Commands;
 
 public class CreatePersonCommand : IRequest<BaseResponseDto>
 {

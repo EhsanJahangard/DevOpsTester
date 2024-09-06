@@ -1,12 +1,7 @@
 ﻿using InfrastructureService;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TestApplication.CQRS.Level.Queries;
+namespace TestApplication.CQRS.Person.Queries;
 
 public class GetAllPersonQuery : IRequest<ResponseMessage>
 {

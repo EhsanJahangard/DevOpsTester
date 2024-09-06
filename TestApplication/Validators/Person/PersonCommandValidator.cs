@@ -3,7 +3,7 @@
 namespace TestApplication.Validators.Person;
 
 
-public class PersonCommandValidator : AbstractValidator<CQRS.Level.Commands.CreatePersonCommand>
+public class PersonCommandValidator : AbstractValidator<CQRS.Person.Commands.CreatePersonCommand>
 {
     public PersonCommandValidator()
     {
