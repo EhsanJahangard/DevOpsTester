@@ -16,3 +16,18 @@ public class LevelConfig : IEntityTypeConfiguration<Level>
 
     }
 }
+
+public class PhotoConfig : IEntityTypeConfiguration<Photo>
+{
+    public void Configure(EntityTypeBuilder<Photo> builder)
+    {
+        builder.Property(r => r.Id)
+                .ValueGeneratedOnAdd()
+                .HasDefaultValueSql("NEWID()");
+        builder.Property(r => r.Title)
+              .HasMaxLength(400);
+        builder.Property(r => r.Url)
+              .HasMaxLength(900);
+
+    }
+}

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestPersistence.Contexts;
 
@@ -11,9 +12,11 @@ using TestPersistence.Contexts;
 namespace TestPersistence.Migrations
 {
     [DbContext(typeof(DevOpsTesterContext))]
-    partial class DevOpsTesterContextModelSnapshot : ModelSnapshot
+    [Migration("20240907184805_approve_qOption")]
+    partial class approve_qOption
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,9 +157,9 @@ namespace TestPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("5b600a56-4842-499d-93fe-2ef78333b568"),
+                            Id = new Guid("c8b5ed43-3859-460b-9169-afc639e52122"),
                             Bio = "Master",
-                            DateBirth = new DateTime(2024, 9, 7, 22, 23, 43, 113, DateTimeKind.Local).AddTicks(6226),
+                            DateBirth = new DateTime(2024, 9, 7, 22, 18, 2, 787, DateTimeKind.Local).AddTicks(5004),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Degree = "Bechlor",
@@ -225,7 +228,7 @@ namespace TestPersistence.Migrations
                         new
                         {
                             Id = new Guid("44755a41-744a-400b-bdb4-21d7faf80c38"),
-                            DateBirth = new DateTime(1989, 9, 7, 22, 23, 43, 113, DateTimeKind.Local).AddTicks(6550),
+                            DateBirth = new DateTime(1989, 9, 7, 22, 18, 2, 787, DateTimeKind.Local).AddTicks(5399),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Family = "جهانگرد",
@@ -237,7 +240,7 @@ namespace TestPersistence.Migrations
                         new
                         {
                             Id = new Guid("55755a41-744a-400b-bdb4-21d7faf80c22"),
-                            DateBirth = new DateTime(1979, 9, 7, 22, 23, 43, 113, DateTimeKind.Local).AddTicks(6564),
+                            DateBirth = new DateTime(1979, 9, 7, 22, 18, 2, 787, DateTimeKind.Local).AddTicks(5406),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Family = "جهانگرد",
@@ -291,7 +294,7 @@ namespace TestPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("232a42a9-0e9f-4ae3-8342-bc68a003d6c5"),
+                            Id = new Guid("af8740b2-f22e-4f6b-a70d-0c2818aa813d"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LevelId = new Guid("15755f41-745a-300b-baa4-11d7faf80c99"),
@@ -302,7 +305,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5e9b0d48-4b63-4a2e-a53c-f7d884510f52"),
+                            Id = new Guid("804682fb-519c-468c-9acc-693e835c70e6"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LevelId = new Guid("15755f41-745a-300b-baa4-11d7faf80c99"),
@@ -317,8 +320,7 @@ namespace TestPersistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("NEWID()");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
@@ -328,13 +330,7 @@ namespace TestPersistence.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(400)
-                        .HasColumnType("nvarchar(400)");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasMaxLength(900)
-                        .HasColumnType("nvarchar(900)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserCreate")
                         .IsRequired()
@@ -397,7 +393,7 @@ namespace TestPersistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6ac7907e-f6ca-4eb7-a948-a37d0cc788b0"),
+                            Id = new Guid("ed3154da-f405-4b84-bd68-aa68f2da5ab9"),
                             Answer = "Container Framework",
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -409,7 +405,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f6cf249d-4ba5-4040-877b-6666dd0959cf"),
+                            Id = new Guid("c17e5a4f-181c-42b8-88fa-06f91055b446"),
                             Answer = "Container Orchestration Open-Source",
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -632,7 +628,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("47f80702-e7e5-4bf0-bf27-0e6641960f35"),
+                            Id = new Guid("42cce210-093b-4450-beb9-d3e36b2a52fa"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -642,7 +638,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("03c215d7-7871-4697-aeea-d0321064a846"),
+                            Id = new Guid("d373c222-6c94-4f3b-8fe0-e6ccdeee1226"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -652,7 +648,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c25aeb09-86a1-4b9a-ac44-ceb4d46ba93f"),
+                            Id = new Guid("39d2db43-a466-4629-916d-539e669b5aa2"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -662,7 +658,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a0b7ff4e-4f1b-41ed-86f9-28364ea90b53"),
+                            Id = new Guid("5d9f732c-c117-4f2f-8fc0-80a95167836c"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -672,7 +668,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e85a5a24-4e97-473d-a369-27adbe459d04"),
+                            Id = new Guid("cc68f973-6b8e-4415-8291-051505fda22c"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -682,7 +678,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4a92eb22-6f77-439d-bd3d-a898b1293e45"),
+                            Id = new Guid("b39dafbc-24c2-4e7c-9ab0-898831fd966e"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -692,7 +688,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ce24a566-c479-4aa2-b034-8183450d01f8"),
+                            Id = new Guid("85a3ffbe-6485-4049-a257-709f38f4665a"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -702,7 +698,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("58bc9b6d-fedf-4749-9409-35bf5973fb6d"),
+                            Id = new Guid("833ccf52-c60b-46b8-9cab-52a576bcd867"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -712,7 +708,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a9867630-f21b-474d-b1ba-b248bc3e90ab"),
+                            Id = new Guid("7be24aa0-6a09-45eb-949d-8b0ce2b59ee7"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -722,7 +718,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("33c9205a-cdc4-4959-b49e-98fd44e2be85"),
+                            Id = new Guid("49ebfb37-0633-4bfb-b92a-db618ac78549"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -732,7 +728,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2a2cdfec-2f1d-43e3-9dee-ddebec96a547"),
+                            Id = new Guid("73665419-c7f2-4ad8-bec3-a57ca6df088e"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -742,7 +738,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2050a7b8-7c35-438b-a5fc-d80ad2b3d1f3"),
+                            Id = new Guid("65de6edf-019c-4ba6-b178-af4780f8a202"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -752,7 +748,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e01c23df-8b23-4ade-8e3d-26cf98971239"),
+                            Id = new Guid("febc795c-8f3c-49a8-a08c-d81c2f8a609f"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -762,7 +758,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d4704b14-032c-49be-a8b1-d138d3c49a53"),
+                            Id = new Guid("417dc110-de11-4cbe-aaec-ce3c525f1ab8"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -772,7 +768,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cc663c0a-795f-4da9-9609-23cca9027d7e"),
+                            Id = new Guid("0757a571-44d2-4f08-818a-d76cb364a889"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -782,7 +778,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3407dd05-b02a-4b53-8d8f-8b6cb8e50c45"),
+                            Id = new Guid("36465b17-02b6-428d-b636-eef349a0f3c6"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -792,7 +788,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3cbe3476-1169-4664-ae68-b1e4b62501b6"),
+                            Id = new Guid("9deb53b0-a4a7-4c44-8610-350ba03d6640"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -802,7 +798,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a0fbd193-6963-42c6-b102-44c4bb651143"),
+                            Id = new Guid("4170ddd4-5e10-4bc7-aec7-1a6394b3d65a"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -812,7 +808,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("6f3707b4-9b03-4100-b55f-0848dd994dbe"),
+                            Id = new Guid("bee0d203-35fd-4f48-8376-5e42299a061f"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -822,7 +818,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("824d6eb3-f416-418c-9c56-1bc8150fa9c5"),
+                            Id = new Guid("e31d4cad-4953-4406-a267-bec2f3e42b56"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -832,7 +828,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("79497bf1-ed54-4adf-a489-fdc86bf1838e"),
+                            Id = new Guid("b57176d8-ca2c-4430-9ec1-5bb79a2c488d"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -842,7 +838,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2e3255cc-91bb-4dcc-ba70-84bafd24cf8f"),
+                            Id = new Guid("5a7df7f3-aa5e-46f9-aac5-a38207cc51e7"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -852,7 +848,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("db8a99e6-badc-4dfa-b639-4fa185d4a0fc"),
+                            Id = new Guid("29e8852c-14e8-4c71-8122-ac63afe9c6ec"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -862,7 +858,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("273ceb95-d47c-42a8-a97a-350967d2451a"),
+                            Id = new Guid("cee46df6-b67c-4313-a4bd-6f293ab6efb0"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -872,7 +868,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2236de5c-1973-408f-8abc-1cbfc5bf03a5"),
+                            Id = new Guid("d53205ef-7e8e-4b64-bade-d2b17d16a120"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -882,7 +878,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("65ce1da3-62ee-4042-8923-2a12deb1358e"),
+                            Id = new Guid("2e32d2a9-10c0-48a1-8816-aa1beaaa7e95"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",
@@ -892,7 +888,7 @@ namespace TestPersistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ec586b8d-316b-4bb9-b36a-1790dcf53f89"),
+                            Id = new Guid("f1f920ff-3829-43d4-b28a-3b7a20583fd1"),
                             DateCreate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             SkillType = "Hard",

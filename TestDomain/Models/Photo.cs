@@ -2,10 +2,13 @@
 
 public class Photo : Common.BaseEntityTitle<Guid>
 {
-    public virtual ICollection<QuestionPhoto> QuestionPhotos { get; set; }
+    
     public Photo(string title)
     {
         Id = Guid.NewGuid();
         Title = title;
     }
+    public string Url { get; set; }
+    public virtual ICollection<QuestionPhoto> QuestionPhotos { get; set; }
+
 }
