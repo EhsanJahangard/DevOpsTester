@@ -38,6 +38,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ITestReadRepository, TestReadRepository>();
         services.AddScoped<IMasterReadRepository, MasterReadRepository>();
         services.AddScoped<IQuestionOptionReadRepository, QuestionOptionReadRepository>();
+        services.AddScoped<IPhotoReadRepository, PhotoReadRepository>();
         #endregion
         #region Redis
         //services.AddStackExchangeRedisCache(options =>

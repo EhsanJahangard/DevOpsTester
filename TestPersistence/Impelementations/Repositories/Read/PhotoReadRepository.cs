@@ -3,17 +3,15 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.QuestionOption;
-using TestApplication.DTOs.Skill;
-using TestDomain.Models;
+using TestApplication.DTOs.Photo;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
+public class PhotoReadRepository : ReadOnlyRepository, IPhotoReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public SkillReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public PhotoReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -23,10 +21,11 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
 
     }
 
+   
 
-    public async Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetPhotoListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "Skillgetall";
+        var cacheKey = "Photogetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -36,8 +35,8 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as SkillId,[Title] FROM [dbo].[Skills]";
-                               var result = await Connection.QueryAsync<GetSkillListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as PhotoId,[Title],url FROM [dbo].[Photos]";
+                               var result = await Connection.QueryAsync<GetPhotoListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
@@ -46,7 +45,7 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
         return res.ToList();
     }
 
-    public async Task<GetSkillListDto> GetById(string Id, CancellationToken cancellationToken)
+    public async Task<GetPhotoListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
