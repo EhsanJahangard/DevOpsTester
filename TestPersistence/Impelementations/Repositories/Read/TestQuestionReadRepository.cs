@@ -3,16 +3,15 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.Skill;
-using TestDomain.Models;
+using TestApplication.DTOs.TestQuestion;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
+public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public SkillReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public TestQuestionReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -22,25 +21,17 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
 
     }
 
-    public async Task<Level> Get(Guid id, CancellationToken cancellationToken)
-    {
-        return null;
-    }
+  
 
-
-    public Task<GetSkillListDto> GetById(string Id, CancellationToken cancellationToken)
+    public Task<GetTestQuestionListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetSkillListDto> GetByLetter(string Text, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
 
-    public async Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetTestQuestionListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "Skillgetall";
+        var cacheKey = "TestQuestiongetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -50,8 +41,8 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as SkillId,[Title] FROM [dbo].[Skills]";
-                               var result = await Connection.QueryAsync<GetSkillListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as TestQuestionId,[Title] FROM [dbo].[TestQuestions]";
+                               var result = await Connection.QueryAsync<GetTestQuestionListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
@@ -60,5 +51,13 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
         return res.ToList();
     }
 
+    public Task<GetTestQuestionListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 
+    public Task<GetTestQuestionListDto> GetByTestId(string Id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }

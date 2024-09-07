@@ -8,3 +8,4 @@ public interface ISkillReadRepository
     Task<GetSkillListDto> GetByLetter(string Letter, CancellationToken cancellationToken);
     Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken);
 }
+
