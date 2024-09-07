@@ -3,15 +3,15 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.TestQuestion;
+using TestApplication.DTOs.Test;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadRepository
+public class TestReadRepository : ReadOnlyRepository, ITestReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public TestQuestionReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public TestReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -21,17 +21,17 @@ public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadR
 
     }
 
-  
 
-    public Task<GetTestQuestionListDto> GetById(string Id, CancellationToken cancellationToken)
+
+    public Task<GetTestListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
 
-    public async Task<List<GetTestQuestionListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetTestListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "TestQuestiongetall";
+        var cacheKey = "Testgetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -41,8 +41,8 @@ public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadR
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as TestQuestionId,[Title] FROM [dbo].[TestQuestions]";
-                               var result = await Connection.QueryAsync<GetTestQuestionListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as TestId,[Title] FROM [dbo].[Tests]";
+                               var result = await Connection.QueryAsync<GetTestListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
@@ -51,12 +51,12 @@ public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadR
         return res.ToList();
     }
 
-    public Task<GetTestQuestionListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
+    public Task<GetTestListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetTestQuestionListDto> GetByTestId(string Id, CancellationToken cancellationToken)
+    public Task<GetTestListDto> GetByTestId(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

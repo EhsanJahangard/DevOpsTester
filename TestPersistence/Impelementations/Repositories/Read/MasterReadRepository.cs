@@ -3,15 +3,16 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.TestQuestion;
+using TestApplication.DTOs.Master;
+using TestDomain.Models;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadRepository
+public class MasterReadRepository : ReadOnlyRepository, IMasterReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public TestQuestionReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public MasterReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -21,17 +22,9 @@ public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadR
 
     }
 
-  
-
-    public Task<GetTestQuestionListDto> GetById(string Id, CancellationToken cancellationToken)
+    public async Task<List<GetMasterListDto>> GetAll(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
-
-
-    public async Task<List<GetTestQuestionListDto>> GetAll(CancellationToken cancellationToken)
-    {
-        var cacheKey = "TestQuestiongetall";
+        var cacheKey = "Mastergetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -41,22 +34,20 @@ public class TestQuestionReadRepository : ReadOnlyRepository, ITestQuestionReadR
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as TestQuestionId,[Title] FROM [dbo].[TestQuestions]";
-                               var result = await Connection.QueryAsync<GetTestQuestionListDto>(query);
+                               string query = @"SELECT TOP 3 convert(nvarchar(40),[Id]) as MasterId,[Name],[Family],[DateBirth],[Mobile] FROM [dbo].[Masters]";
+                               var result = await Connection.QueryAsync<GetMasterListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
 
 
         return res.ToList();
+
+
     }
 
-    public Task<GetTestQuestionListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
 
-    public Task<GetTestQuestionListDto> GetByTestId(string Id, CancellationToken cancellationToken)
+    public async Task<GetMasterListDto>  GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

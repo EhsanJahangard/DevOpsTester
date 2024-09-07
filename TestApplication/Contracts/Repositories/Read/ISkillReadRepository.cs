@@ -9,3 +9,5 @@ public interface ISkillReadRepository
     Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken);
 }
 
+
+

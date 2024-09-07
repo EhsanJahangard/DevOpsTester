@@ -4,10 +4,23 @@ namespace TestDomain.Models;
 
 public class Test : Common.BaseEntityTitle<Guid>
 {
-    public Test(string title)
+    public Test()
+    {
+        Title = "---";
+    }
+
+    public Test( string title,  DateTime? dateTest, string description, string typeTest, DateTime? expirtionTest, byte? lengthMinuteTest, Guid masterId)
     {
         Title = title;
+        DateTest = dateTest;
+        Description = description;
+        TypeTest = typeTest;
+        ExpirtionTest = expirtionTest;
+        LengthMinuteTest = lengthMinuteTest;
+        MasterId = masterId;
+       
     }
+
     public DateTime? DateTest { get; set; } 
     public string Description { get; set; }
     [AllowedValues("OnSite", "Remote", "Other")]
