@@ -50,7 +50,7 @@ builder.Services.AddSwaggerGen(option => {
     option.SwaggerDoc("v1", new OpenApiInfo()
     {
         Version = "v1",
-        Title = "AvestaPort Api"
+        Title = "DevOps Tester Web Api"
     });
 });
 

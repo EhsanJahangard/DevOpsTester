@@ -1,7 +1,7 @@
 ﻿using RabbitMQ.Client;
 using System.Text;
 
-namespace MessageBrokerService;
+namespace EventBus.Messages;
 
 public static class MessageBrokerHelper
 {

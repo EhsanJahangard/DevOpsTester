@@ -1,4 +1,4 @@
-﻿namespace MessageBrokerService;
+﻿namespace EventBus.Messages;
 
 public class MessageBrokerConstants
 {

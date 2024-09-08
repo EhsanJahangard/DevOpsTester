@@ -1,5 +1,5 @@
 ﻿using InfrastructureService;
-using MessageBrokerService;
+using EventBus.Messages;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
