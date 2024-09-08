@@ -1,7 +1,6 @@
 ﻿using InfrastructureService;
 using MediatR;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.CQRS.Question.Queries;
 using TestApplication.CQRS.QuestionOption.Queries;
 
 namespace TestApplication.CQRS.QuestionOption.QueryHandlers;

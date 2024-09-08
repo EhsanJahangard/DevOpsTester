@@ -1,7 +1,7 @@
 ﻿
 using FluentValidation;
 
-namespace TestApplication.Validators.Skill;
+namespace TestApplication.Validators.QuestionType;
 
 public class SkillCommandValidator : AbstractValidator<TestApplication.CQRS.Skill.Commands.CreateSkillCommand>
 {

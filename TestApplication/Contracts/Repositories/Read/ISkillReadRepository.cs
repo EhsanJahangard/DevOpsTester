@@ -1,5 +1,4 @@
-﻿using TestApplication.DTOs.QuestionOption;
-using TestApplication.DTOs.Skill;
+﻿using TestApplication.DTOs.Skill;
 
 namespace TestApplication.Contracts.Repositories.Read;
 

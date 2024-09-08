@@ -3,15 +3,15 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.Skill;
+using TestApplication.DTOs.QuestionType;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
+public class QuestionTypeReadRepository : ReadOnlyRepository, IQuestionTypeReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public SkillReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public QuestionTypeReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -22,9 +22,9 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
     }
 
 
-    public async Task<List<GetSkillListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetQuestionTypeListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "Skillgetall";
+        var cacheKey = "QuestionTypegetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -34,8 +34,8 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as SkillId,[Title] FROM [dbo].[Skills]";
-                               var result = await Connection.QueryAsync<GetSkillListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as QuestionTypeId,[Title] FROM [dbo].[QuestionTypes]";
+                               var result = await Connection.QueryAsync<GetQuestionTypeListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
@@ -44,8 +44,9 @@ public class SkillReadRepository : ReadOnlyRepository, ISkillReadRepository
         return res.ToList();
     }
 
-    public async Task<GetSkillListDto> GetById(string Id, CancellationToken cancellationToken)
+    public async Task<GetQuestionTypeListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
+
 }
