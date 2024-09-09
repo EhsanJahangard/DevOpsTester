@@ -6,10 +6,11 @@ public class QuestionPhoto : Common.BaseEntityTitle<Guid>
     public virtual Question Question { get; set; }
     public Guid PhotoId { get; set; }
     public virtual Photo Photo { get; set; }
-    public QuestionPhoto(string title)
+    public QuestionPhoto(string title, Guid questionId)
     {
         Id = Guid.NewGuid();
         Title = title;
+        QuestionId = questionId;
     }
 
 }

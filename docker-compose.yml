@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  testendpoint:
+    image: ${DOCKER_REGISTRY-}testendpoint
+    build:
+      context: .
+      dockerfile: TestEndPoint/Dockerfile
+  IdentityEndPoint:
+    image: ${DOCKER_REGISTRY-}IdentityEndPoint
+    build:
+      context: .
+      dockerfile: IdentityEndPoint/Dockerfile
+  EventBus.Messages:
+    image: ${DOCKER_REGISTRY-}EventBus_Messages
+    build:
+      context: .
+      dockerfile: EventBus.Messages/Dockerfile
+  NotificationEndPoint:
+    image: ${DOCKER_REGISTRY-}NotificationEndPoint
+    build:
+      context: .
+      dockerfile: NotificationEndPoint/Dockerfile

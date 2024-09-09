@@ -38,6 +38,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<ITestReadRepository, TestReadRepository>();
         services.AddScoped<IMasterReadRepository, MasterReadRepository>();
         services.AddScoped<IQuestionOptionReadRepository, QuestionOptionReadRepository>();
+        services.AddScoped<IQuestionPhotoReadRepository, QuestionPhotoReadRepository>();
         services.AddScoped<IPhotoReadRepository, PhotoReadRepository>();
         services.AddScoped<IQuestionTypeReadRepository, QuestionTypeReadRepository>();
         services.AddScoped<IPersonSkillReadRepository, PersonSkillReadRepository>();

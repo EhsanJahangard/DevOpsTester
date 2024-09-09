@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "EventBus.Messages": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
