@@ -3,15 +3,15 @@ using InfrastructureService;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using TestApplication.Contracts.Repositories.Read;
-using TestApplication.DTOs.Test;
+using TestApplication.DTOs.PersonSkill;
 
 
 namespace TestPersistence.Impelementations.Repositories.Read;
 
-public class TestReadRepository : ReadOnlyRepository, ITestReadRepository
+public class PersonSkillReadRepository : ReadOnlyRepository, IPersonSkillReadRepository
 {
     private readonly IDistributedCache _redisCache;
-    public TestReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
+    public PersonSkillReadRepository(IConfiguration configuration, IDistributedCache redisCache) : base(configuration)
     {
         _redisCache = redisCache ?? throw new ArgumentNullException(nameof(redisCache));
 
@@ -23,15 +23,12 @@ public class TestReadRepository : ReadOnlyRepository, ITestReadRepository
 
 
 
-    public Task<GetTestListDto> GetById(string Id, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+   
 
 
-    public async Task<List<GetTestListDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<GetPersonSkillListDto>> GetAll(CancellationToken cancellationToken)
     {
-        var cacheKey = "Testgetall";
+        var cacheKey = "PersonSkillgetall";
 
         var cacheOptions = new DistributedCacheEntryOptions()
            .SetAbsoluteExpiration(TimeSpan.FromMinutes(20))
@@ -41,8 +38,8 @@ public class TestReadRepository : ReadOnlyRepository, ITestReadRepository
                            async () =>
                            {
                                // logger.LogInformation("cache miss. fetching data for key: {CacheKey} from database.", cacheKey);
-                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as TestId,[Title] FROM [dbo].[Tests]";
-                               var result = await Connection.QueryAsync<GetTestListDto>(query);
+                               string query = @"SELECT TOP 100 convert(nvarchar(40),[Id]) as PersonSkillId,[PersonId],SkillId,LevelId FROM [dbo].[PersonSkills]";
+                               var result = await Connection.QueryAsync<GetPersonSkillListDto>(query);
 
                                return result.ToList();
                            }, cacheOptions)!;
@@ -51,12 +48,17 @@ public class TestReadRepository : ReadOnlyRepository, ITestReadRepository
         return res.ToList();
     }
 
-    public Task<GetTestListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
+    public Task<GetPersonSkillListDto> GetById(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
 
-    public Task<GetTestListDto> GetByTestId(string Id, CancellationToken cancellationToken)
+    public Task<GetPersonSkillListDto> GetByQuestionId(string Id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<GetPersonSkillListDto> GetByTestId(string Id, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
