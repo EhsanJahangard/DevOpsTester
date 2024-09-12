@@ -4,6 +4,11 @@ namespace InfrastructureService
 {
     public class ResponseMessage
     {
+        public ResponseMessage(bool isSuccess, string message)
+        {
+            IsSuccess = isSuccess;
+            Message = message;
+        }
         public ResponseMessage()
         {
             Message = "عملیات با موفقیت انجام شد";
@@ -35,5 +40,6 @@ namespace InfrastructureService
         public string Message { get; set; }
         public object Content { get; set; }
         public HttpStatusCode Status { get; set; } = HttpStatusCode.OK;
+        public bool IsSuccess { get; set; } = true;
     }
 }

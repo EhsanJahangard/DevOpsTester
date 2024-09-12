@@ -28,6 +28,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\IdentityPersistence\IdentityPersistence.csproj" />
+		<ProjectReference Include="..\TestApplication\TestApplication.csproj" />
 	</ItemGroup>
 
 </Project>

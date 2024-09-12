@@ -96,6 +96,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<ITokenManagerRepository, TokenManagerRepository>();
         services.AddScoped<IVerificationCodeRepository, VerificationCodeRepository>();
+        services.AddScoped<IAccountRepository, AccountRepository>();
         #endregion
 
 
