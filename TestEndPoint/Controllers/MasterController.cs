@@ -29,4 +29,19 @@ public class MasterController : ControllerBase
         var response = await _mediator.Send(request, cancellationToken);
         return Ok(response);
     }
+    [HttpPost("GetListDeagree")]
+    public async Task<ActionResult<BaseResponseDto>> GetListDeagree()
+    {
+        var list = new List<BaseResponseListDto<byte>>(){
+                        new BaseResponseListDto<byte>(  1,"دیپلم"),
+                        new BaseResponseListDto<byte>( 2, "کاردانی"),
+                        new BaseResponseListDto<byte>( 3, "کارشناسی"),
+                        new BaseResponseListDto<byte>( 4, "ارشد"),
+                        new BaseResponseListDto<byte>( 5, "دکنری")
+
+        };
+
+
+        return Ok(new BaseResponseDto(list));
+    }
 }
