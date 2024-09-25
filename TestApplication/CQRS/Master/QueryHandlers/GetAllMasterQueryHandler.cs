@@ -24,7 +24,7 @@ public class GetAllMasterQueryHandler : IRequestHandler<GetAllMasterQuery, Respo
             if (result != null)
                 return new ResponseMessage(result);
 
-            return new ResponseMessage("سوالی یافت نشد");
+            return new ResponseMessage("استاد یافت نشد");
         }
         catch (Exception ex)
         {
